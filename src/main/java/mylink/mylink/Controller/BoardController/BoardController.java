@@ -1,15 +1,26 @@
 package mylink.mylink.Controller.BoardController;
 
 
+import mylink.mylink.Board.Service.BoardService;
+import mylink.mylink.Board.domain.Board;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+
 @Controller
 public class BoardController {
+
+    BoardService boardService = new BoardService();
+
     //Move to each Boards.
     @GetMapping("/board-link")
-    public String boardLink(){
+    public String boardLink(Model model){
+        List<Board> boards = boardService.viewAllPosts();
+        model.addAttribute("boards", boards);
+
         return "Board/boardLink";
     }
     @GetMapping("/board-free")
@@ -25,7 +36,16 @@ public class BoardController {
     }
     //POST ==> get datas and do something , redirect to before page.
     @PostMapping("/board-link/write")
-    public String createLinkBoard(){
+    public String createLinkBoard(BoardForm form){
+        Board board = new Board();
+
+        board.setName(form.getName());
+        board.setAge(form.getAge());
+        board.setSex(form.getSex());
+        board.setTitle(form.getTitle());
+        board.setBody(form.getBody());
+
+        boardService.createPost(board);
         return "redirect:/board-link";
     }
 
@@ -34,7 +54,7 @@ public class BoardController {
         return "Board/writeFree";
     }
     @PostMapping("/board-free/write")
-    public String createFreeBoard(){
+    public String createFreeBoard(Board board){
         return "redirect:/";
     }
 

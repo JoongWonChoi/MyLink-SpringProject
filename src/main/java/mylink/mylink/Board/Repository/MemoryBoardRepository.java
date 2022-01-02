@@ -2,7 +2,9 @@ package mylink.mylink.Board.Repository;
 
 import mylink.mylink.Board.domain.Board;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Optional;
 
 public class MemoryBoardRepository implements BoardRepository {
@@ -10,6 +12,7 @@ public class MemoryBoardRepository implements BoardRepository {
     private static long index = 0L; // key값 생성
 
     @Override
+    //게시물 정보 단순 저장
     public Board save(Board board) {
         board.setIndex(++index);
         store.put(index, board);
@@ -23,7 +26,11 @@ public class MemoryBoardRepository implements BoardRepository {
                 .findAny(); //Map의 get메서드의 인자는 key이어야함.
         // ==> key,value 설정 시 key는 중복되지 않는 primary key여야함.
         //     따라서 고유index를 설정하고, 이를 통해 검색하는 방식을 사용
-        //     하지만 title로 검색을 시도하려면 key값으로 String을 넣어줬어야 함.
+        //     하지만 title로 검색을 시도하려면 key값으로 String을 넣어 줬어야 함.
+    }
+    //해쉬에 저장되어있는 게시물 정보들(k,v)를 리스트 형태로 반환
+    public List<Board> findAllBoards(){
+        return new ArrayList<>(store.values());
     }
 
     public void clear() {
