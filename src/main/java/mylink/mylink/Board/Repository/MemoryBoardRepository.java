@@ -19,8 +19,7 @@ public class MemoryBoardRepository implements BoardRepository {
     @Override
     //전달받은 keyword를 포함하는 title을 가진 게시물 반환
     public Optional<Board> findByTitle(String keyword) {
-        return store.values().stream()
-                .filter(board -> board.getName().equals(keyword)) //board의 getName이 파라미터로 넘어온 name과 같으면 반환
+        return store.values().stream().filter(board -> board.getTitle().equals(keyword)) //board의 getName이 파라미터로 넘어온 name과 같으면 반환
                 .findAny(); //Map의 get메서드의 인자는 key이어야함.
         // ==> key,value 설정 시 key는 중복되지 않는 primary key여야함.
         //     따라서 고유index를 설정하고, 이를 통해 검색하는 방식을 사용

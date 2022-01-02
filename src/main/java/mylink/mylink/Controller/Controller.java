@@ -18,13 +18,5 @@ public class Controller {
     public String join(){
         return "MemberService/join";
     }
-    @GetMapping("/board-link")
-    public String boardLink(){
-        return "Board/boardLink";
-    }
-    @GetMapping("/board-free")
-    public String boardFree(){
-        return "Board/boardFree";
-    }
 
 }
