@@ -3,6 +3,7 @@ package mylink.mylink.Controller.BoardController;
 
 import mylink.mylink.Board.Service.BoardService;
 import mylink.mylink.Board.domain.Board;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,14 +14,17 @@ import java.util.List;
 @Controller
 public class BoardController {
 
-    BoardService boardService = new BoardService();
+    private final BoardService boardService;
+    @Autowired
+    public BoardController(BoardService boardService) {
+        this.boardService = boardService;
+    }
 
     //Move to each Boards.
     @GetMapping("/board-link")
     public String boardLink(Model model){
         List<Board> boards = boardService.viewAllPosts();
         model.addAttribute("boards", boards);
-
         return "Board/boardLink";
     }
     @GetMapping("/board-free")
@@ -35,7 +39,7 @@ public class BoardController {
         return "Board/writeLink";
     }
     //POST ==> get datas and do something , redirect to before page.
-    @PostMapping("/board-link/write")
+    /*@PostMapping("/board-link/write")
     public String createLinkBoard(BoardForm form){
         Board board = new Board();
 
@@ -47,16 +51,23 @@ public class BoardController {
 
         boardService.createPost(board);
         return "redirect:/board-link";
+    }*/
+    @PostMapping("/board-link/write")
+    public String createLinkBoard(Board board){
+        boardService.createPost(board);
+        return "redirect:/board-link";
     }
 
     @GetMapping("/board-free/write")
     public String writeFreeBoard(){
         return "Board/writeFree";
     }
+
     @PostMapping("/board-free/write")
     public String createFreeBoard(Board board){
         return "redirect:/";
     }
+
 
 
 

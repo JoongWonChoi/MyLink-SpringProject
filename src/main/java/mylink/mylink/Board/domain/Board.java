@@ -1,6 +1,7 @@
 package mylink.mylink.Board.domain;
 
 public class Board {
+    private long index;
     private String name;
     private int age;
     private String sex;
@@ -11,23 +12,16 @@ public class Board {
     public String getBody() {
         return body;
     }
-
     public void setBody(String body) {
         this.body = body;
     }
 
-
-    private long index;
-
     public long getIndex() {
         return index;
     }
-
     public void setIndex(long index) {
         this.index = index;
     }
-
-
 
     //Title
     public String getTitle() {
