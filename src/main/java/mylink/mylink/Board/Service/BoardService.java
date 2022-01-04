@@ -1,19 +1,16 @@
 package mylink.mylink.Board.Service;
 
 import mylink.mylink.Board.Repository.BoardRepository;
+import mylink.mylink.Board.Repository.MemoryBoardRepository;
 import mylink.mylink.Board.domain.Board;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
 public class BoardService {
+    // Service 로직 ====> Client가  사용하는 클래스!!
     //  ===> 게시물 작성 / 수정 / 삭제 / 읽기 (CRUD) 로직 구현
-    @Autowired private final BoardRepository boardRepository;
 
-
-    public BoardService(BoardRepository boardRepository) {
-        this.boardRepository = boardRepository;
-    }
+    BoardRepository boardRepository = new MemoryBoardRepository(); // ==> DB연동 여부를 모르기에 BoardRepository 인터페이스를 상속받은 구현체 MBR을 저장소로 사용
 
     //게시물
     public void createPost(Board board){
