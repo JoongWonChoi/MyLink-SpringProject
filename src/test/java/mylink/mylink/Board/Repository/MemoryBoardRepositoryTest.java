@@ -1,13 +1,10 @@
 package mylink.mylink.Board.Repository;
 
 import mylink.mylink.Board.domain.Board;
-
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
-import java.util.Optional;
 
 
 class MemoryBoardRepositoryTest {

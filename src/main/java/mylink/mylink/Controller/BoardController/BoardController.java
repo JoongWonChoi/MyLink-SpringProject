@@ -52,7 +52,6 @@ public class BoardController {
         boardService.createPost(board);
         return "redirect:/board-link";
     }
-
     @GetMapping("/board-free/write")
     public String writeFreeBoard(){
         return "Board/writeFree";
@@ -62,8 +61,4 @@ public class BoardController {
     public String createFreeBoard(Board board){
         return "redirect:/";
     }
-
-
-
-
 }
