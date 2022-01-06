@@ -33,7 +33,7 @@ public class BoardController {
     public String writeLinkBoard(){
         return "Board/writeLink";
     }
-    //POST ==> get datas and do something , redirect to before page.
+    //POST ==> get data and do something , redirect to before page.
     /*@PostMapping("/board-link/write")
     public String createLinkBoard(BoardForm form){
         Board board = new Board();
