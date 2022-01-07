@@ -24,6 +24,21 @@ public class BoardServiceImpl implements BoardService{
         boardRepository.save(board);
     }
 
+    @Override
+    public void readPost() {
+
+    }
+
+    @Override
+    public void updatePost() {
+
+    }
+
+    @Override
+    public void deletePost() {
+
+    }
+
     private void validateDuplicateTitle(Board board) {
         boardRepository.findByTitle(board.getTitle()).ifPresent(m -> {
             new IllegalStateException("same title exists . .");

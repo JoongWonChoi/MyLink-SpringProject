@@ -1,6 +1,5 @@
 package mylink.mylink.Controller.BoardController;
 
-
 import mylink.mylink.Board.Service.BoardService;
 import mylink.mylink.Board.domain.Board;
 import org.springframework.stereotype.Controller;
