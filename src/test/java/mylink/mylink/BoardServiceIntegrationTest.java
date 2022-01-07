@@ -2,7 +2,7 @@ package mylink.mylink;
 
 
 import mylink.mylink.Board.Repository.BoardRepository;
-import mylink.mylink.Board.Service.BoardService;
+import mylink.mylink.Board.Service.BoardServiceImpl;
 import mylink.mylink.Board.domain.Board;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,20 +13,15 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class BoardServiceIntegrationTest {
 
-    @Autowired BoardService boardService;
+    @Autowired
+    BoardServiceImpl boardService;
     @Autowired BoardRepository boardRepository;
 
     @Test
     public void 게시물작성 () throws Exception {
         //given
-        Board board = new Board();
+        Board board = new Board(1L,"jwc",25,"male","SW","title1","body1");
 
-        board.setName("jwc");
-        board.setTitle("Title");
-        board.setSex("male");
-        board.setAge(25);
-        board.setDepartment("SW");
-        board.setBody("WWW.agsd");
         //when
         boardService.createPost(board);
         //then

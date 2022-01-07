@@ -9,6 +9,16 @@ public class Board {
     private String title;
     private String body;
 
+    public Board(long index, String name, int age, String sex, String department, String title, String body) {
+        this.index = index;
+        this.name = name;
+        this.age = age;
+        this.sex = sex;
+        this.department = department;
+        this.title = title;
+        this.body = body;
+    }
+
     public String getBody() {
         return body;
     }

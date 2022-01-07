@@ -1,38 +1,42 @@
 package mylink.mylink.Board.Service;
 
-import mylink.mylink.Board.Repository.MemoryBoardRepository;
+import mylink.mylink.AppConfig;
 import mylink.mylink.Board.domain.Board;
-import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class BoardServiceTest {
+import static org.assertj.core.api.Assertions.assertThat;
 
-    MemoryBoardRepository mbr = new MemoryBoardRepository();
+class BoardServiceTest {
+    BoardService boardService;
+
+    @BeforeEach
+    public void beforeEach() {
+        AppConfig appConfig = new AppConfig();
+        boardService = appConfig.boardService();
+    }
+
     //BoardService boardService = new BoardService();
 
-    @AfterEach
+    /*@AfterEach
     void clear(){
-        mbr.clear();
-    }
+        boardService.clear();
+    }*/
 
     @Test
     void 게시물_Create() {
-        Board board = new Board();
-        board.setName("jwc");
-        board.setAge(25);
-        board.setSex("M");
-        board.setDepartment("SW");
-        board.setTitle("Test");
-        board.setBody("Hello this is test case");
+        //given
+        Board board = new Board(1L, "jwc", 25, "male", "SW", "title1", "body1");
         //when
         //게시물 create
-
+        boardService.createPost(board);
         //then
+        Board result = boardService.viewPost("title1").get();
+        assertThat(result.getName()).isEqualTo("jwc");
     }
 
     @Test
     void 중복_제목_판별(){
-
 
     }
 }

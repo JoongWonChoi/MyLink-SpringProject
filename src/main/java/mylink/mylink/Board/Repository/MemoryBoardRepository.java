@@ -20,6 +20,21 @@ public class MemoryBoardRepository implements BoardRepository {
     }
 
     @Override
+    public Board read(Board board) {
+        return null;
+    }
+
+    @Override
+    public Board delete(Board board) {
+        return null;
+    }
+
+    @Override
+    public Board update(Board board) {
+        return null;
+    }
+
+    @Override
     //전달받은 keyword를 포함하는 title을 가진 게시물 반환
     public Optional<Board> findByTitle(String keyword) {
         return store.values().stream().filter(board -> board.getTitle().equals(keyword)) //board의 getName이 파라미터로 넘어온 name과 같으면 반환

@@ -13,7 +13,12 @@ import java.util.List;
 @Controller
 public class BoardController {
 
-    BoardService boardService = new BoardService();
+    private final BoardService boardService;
+
+    public BoardController(BoardService boardService) {
+        this.boardService = boardService;
+    }
+
 
     //Move to each Boards.
     @GetMapping("/board-link")
