@@ -2,21 +2,19 @@ package mylink.mylink.Controller.BoardController;
 
 import mylink.mylink.Board.Service.BoardService;
 import mylink.mylink.Board.domain.Board;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
-@Controller
 public class BoardController {
 
     private final BoardService boardService;
 
-    public BoardController(BoardService boardService) {
-        this.boardService = boardService;
-    }
+        public BoardController(BoardService boardService) {
+            this.boardService = boardService;
+        }
 
 
     //Move to each Boards.

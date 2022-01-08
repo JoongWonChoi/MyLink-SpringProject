@@ -2,10 +2,12 @@ package mylink.mylink.Board.Service;
 
 import mylink.mylink.Board.Repository.BoardRepository;
 import mylink.mylink.Board.domain.Board;
-import java.util.Optional;
-import java.util.List;
 
-public class BoardServiceImpl implements BoardService{
+import java.util.List;
+import java.util.Optional;
+
+
+public class BoardServiceImpl implements BoardService {
 
     // Service 로직 ====> Client가  사용하는 클래스!!
     //  ===> 게시물 작성 / 수정 / 삭제 / 읽기 (CRUD) 로직 구현
@@ -17,6 +19,12 @@ public class BoardServiceImpl implements BoardService{
         this.boardRepository = boardRepository;
     }
 
+    /*ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
+    applicationContext.getBean("boardRepository",BoardRepository.class);*/
+
+
+
+
     //게시물
     public void createPost(Board board) {
         //중복되는 title 있는지 검증 ==> 제목을 통한 검색을 위해.
@@ -25,19 +33,20 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
-    public void readPost() {
-
+    public Board readPost(Board board) {
+        return boardRepository.read(board);
     }
 
     @Override
-    public void updatePost() {
-
+    public Board updatePost(Board board) {
+        return boardRepository.update(board);
     }
 
     @Override
-    public void deletePost() {
-
+    public Board deletePost(Board board) {
+        return boardRepository.delete(board);
     }
+
 
     private void validateDuplicateTitle(Board board) {
         boardRepository.findByTitle(board.getTitle()).ifPresent(m -> {
@@ -49,6 +58,7 @@ public class BoardServiceImpl implements BoardService{
             };
          */
     }
+
     public List<Board> viewAllPosts() {
         return boardRepository.findAllBoards();
     }

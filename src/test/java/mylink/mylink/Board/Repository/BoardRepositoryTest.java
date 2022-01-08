@@ -4,6 +4,7 @@ import mylink.mylink.AppConfig;
 import mylink.mylink.Board.domain.Board;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class BoardRepositoryTest {
@@ -14,6 +15,7 @@ public class BoardRepositoryTest {
         this.boardRepository = appConfig.boardRepository();
     }
     @Test
+    @DisplayName("게시물 저장")
     public void 게시물_저장(){
         //given
         Board board = new Board(1L, "jwc", 25, "male", "SW", "title1", "body1");
