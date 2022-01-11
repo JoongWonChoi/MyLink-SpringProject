@@ -9,7 +9,7 @@ public class BoardServiceApp {
         BoardService boardService = appConfig.boardService();
 
         //given
-        Board board = new Board(1L, "jwc", 25, "male", "SW", "title1", "body1");
+        Board board = new Board( "jwc", 25, "male", "SW", "title1", "body1");
         //when
         //게시물 create
         boardService.createPost(board);

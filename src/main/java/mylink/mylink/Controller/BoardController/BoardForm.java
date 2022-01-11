@@ -2,7 +2,7 @@ package mylink.mylink.Controller.BoardController;
 
 public class BoardForm {
     private String name;
-    private int age;
+    private long age;
     private String sex;
     private String department;
     private String title;
@@ -15,19 +15,6 @@ public class BoardForm {
     public void setBody(String body) {
         this.body = body;
     }
-
-
-    private long index;
-
-    public long getIndex() {
-        return index;
-    }
-
-    public void setIndex(long index) {
-        this.index = index;
-    }
-
-
 
     //Title
     public String getTitle() {
@@ -46,11 +33,11 @@ public class BoardForm {
         this.name = name;
     }
     //Age
-    public int getAge() {
+    public long getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(long age) {
         this.age = age;
     }
     //Sex

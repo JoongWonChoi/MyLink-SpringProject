@@ -1,12 +1,15 @@
 package mylink.mylink.Board.Repository;
 
 import mylink.mylink.Board.domain.Board;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
+
+@Component
 public class MemoryBoardRepository implements BoardRepository {
     HashMap<Long, Board> store = new HashMap<>();
     private static long index = 0L; // key값 생성

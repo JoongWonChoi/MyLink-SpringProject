@@ -4,14 +4,13 @@ import mylink.mylink.Board.Repository.BoardRepository;
 import mylink.mylink.Board.Repository.MemoryBoardRepository;
 import mylink.mylink.Board.Service.BoardService;
 import mylink.mylink.Board.Service.BoardServiceImpl;
-import mylink.mylink.Controller.BoardController.BoardController;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 
-@Configuration
+@Configuration //구성 정보 담당해준다는 애노테이션. 애플리케이션의 환경설정.
 public class AppConfig {
-    @Bean
+    @Bean // 스프링 컨테이너에 빈 형태로 객체 등록
     public BoardRepository boardRepository() {
         return new MemoryBoardRepository();
     }
@@ -19,10 +18,11 @@ public class AppConfig {
     public BoardService boardService() {
         return new BoardServiceImpl(boardRepository());
     }
-    @Bean
+    /*@Bean
     public BoardController boardController() {
         return new BoardController(boardService());
-    }
+    }*/
+    //왜 컨트롤러만 중복 빈 충돌 에러가 발생할까?
 
 
 

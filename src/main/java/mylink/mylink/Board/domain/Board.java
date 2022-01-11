@@ -9,8 +9,7 @@ public class Board {
     private String title;
     private String body;
 
-    public Board(long index, String name, int age, String sex, String department, String title, String body) {
-        this.index = index;
+    public Board(String name, int age, String sex, String department, String title, String body) {
         this.name = name;
         this.age = age;
         this.sex = sex;
