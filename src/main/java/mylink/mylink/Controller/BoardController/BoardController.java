@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -67,4 +68,18 @@ public class BoardController {
     public String createFreeBoard(Board board){
         return "redirect:/";
     }
+
+    //특정 게시물의 index를 받는 controller
+    @GetMapping("/board-link/post/{id}")
+    //Get 방식의 query string 방식 : .../post?id=1 과 같은 방식
+    //Get 방식의 path value 방식 : .../post/1 과 같이 값을 경로에 넣는 방식
+    //나는 post 상세보기 로직에서 파라미터 매핑을 path value방식으로 하고싶었기 때문에 PathVariable 어노테이션을 사용하였다.
+    public String boardLinkDetail(@PathVariable("id") Long id, Model model){
+        //Service를 통해 특정 id 값으로 post 반환해오는 로직
+        Board post = boardService.viewPost(id);
+        model.addAttribute("post",post);
+        return "Board/boardDetail";
+    }
 }
+
+

@@ -43,13 +43,12 @@
                 <th>나이</th>
                 <th>성별</th>
                 <th>전공</th>
-
             </tr>
             </thead>
             <tbody>
             <tr th:each="board : ${boards}">
                 <td th:text="${board.index}"></td>
-                <td th:text="${board.title}"></td>
+                <td><a th:href="@{/board-link/post/{id}(id=${board.index})}" th:text="${board.title}"></a></td>
                 <td th:text="${board.name}"></td>
                 <td th:text="${board.age}"></td>
                 <td th:text="${board.sex}"></td>

@@ -14,7 +14,7 @@ public class BoardServiceApp {
         //게시물 create
         boardService.createPost(board);
         //then
-        Board result = boardService.viewPost("title1").get();
+        Board result = boardService.viewPost(1L);
 
         System.out.println("saved name = "+result.getName());
         System.out.println("expected name = jwc");

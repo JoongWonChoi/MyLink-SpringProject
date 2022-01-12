@@ -31,7 +31,7 @@ class BoardServiceTest {
         //게시물 create
         boardService.createPost(board);
         //then
-        Board result = boardService.viewPost("title1").get();
+        Board result = boardService.viewPost(1L);
         assertThat(result.getName()).isEqualTo("jwc");
     }
 

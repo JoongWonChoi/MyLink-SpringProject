@@ -18,6 +18,8 @@ public interface BoardRepository {
 
     Optional<Board> findByTitle(String keyword);
     //게시판처럼 글
+
+    Board findById(long id); //id로 게시물 찾기
     List<Board> findAllBoards();
 
     void clear();

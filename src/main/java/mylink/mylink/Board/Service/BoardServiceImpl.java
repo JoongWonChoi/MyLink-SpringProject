@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 
 @Service
@@ -67,7 +66,8 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public Optional<Board> viewPost(String keyword) {
-        return boardRepository.findByTitle(keyword);
+    public Board viewPost(Long index) {
+        Board post = boardRepository.findById(index);
+        return post;
     }
 }
