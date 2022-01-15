@@ -12,7 +12,7 @@ public interface BoardRepository {
     //for read
     Board read(Board board);
     //for delete
-    Board delete(Board board);
+    void delete(Long index);
     //for update
     Board update(Board board);
 

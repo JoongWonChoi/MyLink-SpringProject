@@ -80,6 +80,12 @@ public class BoardController {
         model.addAttribute("post",post);
         return "Board/boardDetail";
     }
+    @PostMapping("/board-link/post/{id}")
+    public String deletePost(@PathVariable("id") Long id){
+        return "Board/boardLink";
+    }
+
+
 }
 
 

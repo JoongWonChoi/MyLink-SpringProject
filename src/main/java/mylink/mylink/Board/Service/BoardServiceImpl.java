@@ -45,8 +45,8 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public Board deletePost(Board board) {
-        return boardRepository.delete(board);
+    public void deletePost(Long index) {
+        boardRepository.delete(index);
     }
 
 
