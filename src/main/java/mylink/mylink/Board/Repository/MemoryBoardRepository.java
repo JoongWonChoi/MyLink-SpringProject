@@ -28,7 +28,7 @@ public class MemoryBoardRepository implements BoardRepository {
     }
 
     @Override
-    public void delete(Long index) { //게시물 삭제는 내부 로직이기때문에 굳이 무언가를 반환할 필요X
+    public void delete(Long index) { //게시물 삭제는 내부 로직이기때문에 굳이 무언가를 반환할 필요 없다고 판단함.
         findById(index);
         store.remove(index);
     }
@@ -60,7 +60,7 @@ public class MemoryBoardRepository implements BoardRepository {
 
     //해쉬에 저장되어있는 게시물 정보들(k,v)를 리스트 형태로 반환
     public List<Board> findAllBoards(){
-        //System.out.println("new ArrayList<>(store.values()) = " + new ArrayList<>(store.values()));
+        System.out.println("new ArrayList<>(store.values()) = " + new ArrayList<>(store.values()));
         return new ArrayList<>(store.values());
     }
 

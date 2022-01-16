@@ -82,7 +82,8 @@ public class BoardController {
     }
     @PostMapping("/board-link/post/{id}")
     public String deletePost(@PathVariable("id") Long id){
-        return "Board/boardLink";
+        boardService.deletePost(id);
+        return "redirect:/board-link";
     }
 
 
