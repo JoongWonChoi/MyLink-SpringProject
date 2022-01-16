@@ -86,6 +86,16 @@ public class BoardController {
         return "redirect:/board-link";
     }
 
+    @GetMapping("/board-link/post/update/{id}")
+    public String getPostForUpdate(@PathVariable("id")Long id) {
+        return "Board/updateBoard";
+    }
+    @PostMapping("/board-link/post/update/{id}")
+    public String updatePost(@PathVariable("id") Long id,Board board) {
+        boardService.updatePost(board);
+        return "redirect:/board-link";
+    }
+
 
 }
 

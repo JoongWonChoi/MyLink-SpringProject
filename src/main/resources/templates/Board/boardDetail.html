@@ -35,7 +35,6 @@
 <div class = "container">
     <div>
         <table>
-            
             <tbody>
             <tr th:each="post : ${post}">
                 <td th:text="${post.index}"></td>
@@ -45,7 +44,10 @@
                 <td th:text="${post.sex}"></td>
                 <td th:text="${post.department}"></td>
                 <td th:text="${post.body}"></td>
-                <form method="post" th:href="@{/board-link/post/{id}(id=${post.index})}">
+
+                <button type="submit" formmethod="get" onclick="alert('lets update!!')" th:href="@{/board-link/post/update/{id}(id=${post.index})}">Update</button>
+
+                <form method="post" th:href="@{/board-link/post/update/{id}(id=${post.index})}">
                     <button type="submit" onclick="alert('delete complete!')">Delete</button>
                 </form>
             </tr>

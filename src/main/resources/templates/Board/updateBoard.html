@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+
+</head>
+<body>
+<div class="container">
+    <tr th:each="post : ${post}">
+        <div class="form-group">
+            <div>
+                <label form="name">이름</label>
+                <input type="text" id="name" name="name" th:value"${post.name}">
+            </div>
+            <div>
+                <label form="age">나이</label>
+                <input type="text" id="age" name="age" th:value="${post.age}">
+            </div>
+            <div>
+                <label form="sex">성별</label>
+                <input type="radio"  value="male" name="sex">남성
+                <input type="radio"  value="female" name="sex">여성
+                <input type="radio"  value="mixed" name="sex">중성
+            </div>
+            <div>
+                <label form="department">전공</label>
+                <input type="text" id="department" name="department" th:value="${post.department}"></div>
+            <div>
+                <label form="title">제목</label>
+                <input type="text" id="title" name="title" th:value="${post.title}">
+            </div>
+            <div>
+                <label form="body">내용</label>
+                <input type="text" id="body" name="body" th:value="${post.body}">
+            </div>
+        </div>
+</div>
+<form method="post" th:href="@{/board-link/post/{id}/update(id=${post.index})}">
+    <button type="submit" onclick="alert('complete!')">등록</button>
+</form>
+</div>
+
+ok
+
+</body>
+</html>
