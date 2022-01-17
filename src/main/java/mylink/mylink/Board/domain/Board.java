@@ -44,32 +44,44 @@ public class Board {
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
+
     //Age
     public int getAge() {
         return age;
     }
-
     public void setAge(int age) {
         this.age = age;
     }
+
     //Sex
     public String getSex() {
         return sex;
     }
-
     public void setSex(String sex) {
         this.sex = sex;
     }
+
     //Department
     public String getDepartment() {
         return department;
     }
-
     public void setDepartment(String department) {
         this.department = department;
+    }
+
+    @Override
+    public String toString() {
+        return "Board{" +
+                "index=" + index +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", sex='" + sex + '\'' +
+                ", department='" + department + '\'' +
+                ", title='" + title + '\'' +
+                ", body='" + body + '\'' +
+                '}';
     }
 }

@@ -14,7 +14,7 @@ public interface BoardRepository {
     //for delete
     void delete(Long index);
     //for update
-    Board update(Board board);
+    void update(Board updatedBoard, Long index);
 
     Optional<Board> findByTitle(String keyword);
     //게시판처럼 글

@@ -34,8 +34,14 @@ public class MemoryBoardRepository implements BoardRepository {
     }
 
     @Override
-    public Board update(Board board) {
-        return null;
+    public void update(Board updatedBoard, Long index) { //넘어온 업데이트된 게시물로 덮어쓰기
+        Board beforeUpdate = store.get(index);
+        beforeUpdate.setName(updatedBoard.getName());
+        beforeUpdate.setAge(updatedBoard.getAge());
+        beforeUpdate.setSex(updatedBoard.getSex());
+        beforeUpdate.setDepartment(updatedBoard.getDepartment());
+        beforeUpdate.setTitle(updatedBoard.getTitle());
+        beforeUpdate.setBody(updatedBoard.getBody());
     }
 
     @Override
@@ -60,11 +66,13 @@ public class MemoryBoardRepository implements BoardRepository {
 
     //해쉬에 저장되어있는 게시물 정보들(k,v)를 리스트 형태로 반환
     public List<Board> findAllBoards(){
-        System.out.println("new ArrayList<>(store.values()) = " + new ArrayList<>(store.values()));
+        //System.out.println("new ArrayList<>(store.values()) = " + new ArrayList<>(store.values()));
         return new ArrayList<>(store.values());
     }
 
     public void clear() {
         store.clear();
     }
+
+
 }

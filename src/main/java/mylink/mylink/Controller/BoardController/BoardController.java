@@ -6,11 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import java.util.List;
-
 
 @Controller
 public class BoardController {
@@ -35,6 +34,7 @@ public class BoardController {
     }
     //Move to each WRITE PAGE..
 
+    //====================Create========================
     //GET ==> move to there
     @GetMapping("/board-link/write")
     public String writeLinkBoard(){
@@ -69,6 +69,7 @@ public class BoardController {
         return "redirect:/";
     }
 
+    //====================Read========================
     //특정 게시물의 index를 받는 controller
     @GetMapping("/board-link/post/{id}")
     //Get 방식의 query string 방식 : .../post?id=1 과 같은 방식
@@ -80,19 +81,27 @@ public class BoardController {
         model.addAttribute("post",post);
         return "Board/boardDetail";
     }
+
+    //====================Delete========================
     @PostMapping("/board-link/post/{id}")
     public String deletePost(@PathVariable("id") Long id){
         boardService.deletePost(id);
         return "redirect:/board-link";
     }
 
+    //====================Update========================
     @GetMapping("/board-link/post/update/{id}")
-    public String getPostForUpdate(@PathVariable("id")Long id) {
+    public String getPostForUpdate(@PathVariable("id")Long id, Model model) {
+        Board post = boardService.viewPost(id);
+        model.addAttribute("post",post);
         return "Board/updateBoard";
     }
     @PostMapping("/board-link/post/update/{id}")
-    public String updatePost(@PathVariable("id") Long id,Board board) {
-        boardService.updatePost(board);
+    @ModelAttribute
+    public String updatePost(@PathVariable("id") Long id, @ModelAttribute Board board) {
+        System.out.println("updated board  "+board.getName());
+        System.out.println("updated board  "+board.getAge());
+        boardService.updatePost(board, id);
         return "redirect:/board-link";
     }
 

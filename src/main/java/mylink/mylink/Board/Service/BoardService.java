@@ -8,7 +8,7 @@ public interface BoardService {
 
     void createPost(Board board);
     Board readPost(Board board);
-    Board updatePost(Board board);
+    void updatePost(Board board, Long index);
     void deletePost(Long index);
     List<Board> viewAllPosts();
     Board viewPost(Long index);
