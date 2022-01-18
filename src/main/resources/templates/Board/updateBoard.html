@@ -6,7 +6,7 @@
 <body>
 <div class="container">
     <tr th:each="post : ${post}">
-        <form method="post" th:action="@{/board-link/post/update/{id}(id=${post.index})}">
+        <form method="post" th:action="'location.href=\''+ @{/board-link/post/update/{id}(id=${post.index})} + '\''">
         <div class="form-group">
             <div>
                 <label form="name">이름</label>
