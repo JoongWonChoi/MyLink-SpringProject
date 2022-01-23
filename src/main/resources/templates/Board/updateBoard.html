@@ -6,7 +6,7 @@
 <body>
 <div class="container">
     <tr th:each="post : ${post}">
-        <form method="post" th:action="'location.href=\''+ @{/board-link/post/update/{id}(id=${post.index})} + '\''">
+        <form method="post" th:href="@{/board-link/post/update/{id}(id=${post.index})}">
         <div class="form-group">
             <div>
                 <label form="name">이름</label>
@@ -35,6 +35,7 @@
                 <input type="text" id="body" name="body" th:value="${post.body}">
             </div>
         </div>
+
             <button type="submit" onclick="alert('complete!')">등록</button>
         </form>
 

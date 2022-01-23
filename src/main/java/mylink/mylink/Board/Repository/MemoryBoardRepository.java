@@ -35,7 +35,10 @@ public class MemoryBoardRepository implements BoardRepository {
 
     @Override
     public void update(Board updatedBoard, Long index) { //넘어온 업데이트된 게시물로 덮어쓰기
+        System.out.println("update in Repository  " + updatedBoard.getName());
+        System.out.println("index = " + index);
         Board beforeUpdate = store.get(index);
+        System.out.println("beforeUpdate.getName() = " + beforeUpdate.getName());
         beforeUpdate.setName(updatedBoard.getName());
         beforeUpdate.setAge(updatedBoard.getAge());
         beforeUpdate.setSex(updatedBoard.getSex());

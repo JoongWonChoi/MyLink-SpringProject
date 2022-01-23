@@ -97,7 +97,7 @@ public class BoardController {
         return "Board/updateBoard";
     }
     @PostMapping("/board-link/post/update/{id}")
-    @ModelAttribute
+    //@ModelAttribute
     public String updatePost(@PathVariable("id") Long id, @ModelAttribute Board board) {
         System.out.println("updated board  "+board.getName());
         System.out.println("updated board  "+board.getAge());

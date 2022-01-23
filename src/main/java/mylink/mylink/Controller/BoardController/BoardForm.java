@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class BoardForm {
     private String name;
+    private Long index;
     private Integer age;
     private String sex;
     private String department;
@@ -17,6 +18,14 @@ public class BoardForm {
     }
     public void setBody(String body) {
         this.body = body;
+    }
+
+    public Long getIndex() {
+        return index;
+    }
+
+    public void setIndex(Long index) {
+        this.index = index;
     }
 
     //Title

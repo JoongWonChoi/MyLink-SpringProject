@@ -3,9 +3,11 @@ package mylink.mylink.Board.Service;
 import mylink.mylink.AutoAppConfig;
 import mylink.mylink.Board.Repository.BoardRepository;
 import mylink.mylink.Board.domain.Board;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -23,10 +25,12 @@ class BoardServiceTest {
 
     //BoardService boardService = new BoardService();
 
-    /*@AfterEach
+    @AfterEach
     void clear(){
-        boardService.clear();
-    }*/
+        ApplicationContext ac = new AnnotationConfigApplicationContext(AutoAppConfig.class);
+        BoardRepository boardRepository = ac.getBean("boardRepository", BoardRepository.class);
+        boardRepository.clear();
+    }
 
     @Test
     void 게시물_Create() {
@@ -43,7 +47,7 @@ class BoardServiceTest {
         assertThat(result.getName()).isEqualTo("jwc");
     }
 
-
+    @Transactional
     @Test
     void 게시물_삭제() {
         //어플리케이션에 등록된 빈 불러오기 (의존관계 주입이 완료된 형태임)
