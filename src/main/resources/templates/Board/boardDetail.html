@@ -43,7 +43,7 @@
                 <td th:text="${post.age}"></td>
                 <td th:text="${post.sex}"></td>
                 <td th:text="${post.department}"></td>
-                <td th:text="${post.body}"></td>
+                <td><a th:href="${post.body}" th:text="${post.body}"></a></td>
 
                 <button type="submit" formmethod="get" th:onclick="'location.href=\''+ @{/board-link/post/update/{id}(id=${post.index})} + '\''">Update</button>
 

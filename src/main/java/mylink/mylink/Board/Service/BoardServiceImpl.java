@@ -35,11 +35,6 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public Board readPost(Board board) {
-        return boardRepository.read(board);
-    }
-
-    @Override
     public void updatePost(Board board, Long index) {
         System.out.println("updatePost in ServiceImpl"+board.getName());
 

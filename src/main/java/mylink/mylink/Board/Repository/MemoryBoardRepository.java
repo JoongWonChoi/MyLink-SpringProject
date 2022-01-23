@@ -21,24 +21,19 @@ public class MemoryBoardRepository implements BoardRepository {
         store.put(index, board);
         return board;
     }
-
-    @Override
-    public Board read(Board board) {
-        return null;
-    }
-
+    //게시물 삭제
     @Override
     public void delete(Long index) { //게시물 삭제는 내부 로직이기때문에 굳이 무언가를 반환할 필요 없다고 판단함.
         findById(index);
         store.remove(index);
     }
-
+    //게시물 업데이트
     @Override
     public void update(Board updatedBoard, Long index) { //넘어온 업데이트된 게시물로 덮어쓰기
-        System.out.println("update in Repository  " + updatedBoard.getName());
-        System.out.println("index = " + index);
+        /*System.out.println("update in Repository  " + updatedBoard.getName());
+        System.out.println("index = " + index);*/
         Board beforeUpdate = store.get(index);
-        System.out.println("beforeUpdate.getName() = " + beforeUpdate.getName());
+        /*System.out.println("beforeUpdate.getName() = " + beforeUpdate.getName());*/
         beforeUpdate.setName(updatedBoard.getName());
         beforeUpdate.setAge(updatedBoard.getAge());
         beforeUpdate.setSex(updatedBoard.getSex());

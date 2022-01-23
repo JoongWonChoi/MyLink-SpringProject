@@ -9,8 +9,6 @@ public interface BoardRepository {
 
     //for create
     Board save(Board board); //Board자료형 return
-    //for read
-    Board read(Board board);
     //for delete
     void delete(Long index);
     //for update
