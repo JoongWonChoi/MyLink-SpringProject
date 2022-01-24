@@ -10,6 +10,15 @@ public class Member {
     private String address;
     private String password;
 
+    public Member(String name, int age, String sex, String department, String address, String password) {
+        this.name = name;
+        this.age = age;
+        this.sex = sex;
+        this.department = department;
+        this.address = address;
+        this.password = password;
+    }
+
     public long getIndex() {
         return index;
     }
