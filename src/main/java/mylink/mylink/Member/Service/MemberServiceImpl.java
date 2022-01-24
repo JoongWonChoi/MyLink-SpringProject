@@ -15,25 +15,25 @@ public class MemberServiceImpl implements MemberService{
         this.memberRepository = memberRepository;
     }
     @Override
-    public void join(Member member) {
+    public boolean join(Member member) {
         boolean check = checkDuplicateAddress(member);
-        if(check==true){memberRepository.save(member);}
+        if(check==true){
+            memberRepository.save(member);
+            return true;}
         else{
-            System.out.println("already exists . .");}
-
+            System.out.println("already exists . .");
+            return false;}
     }
 
     private boolean checkDuplicateAddress(Member member) {
         Optional<Member> byAddress = memberRepository.findByAddress(member.getAddress());
-        if (byAddress.isEmpty()) {
-            return true;
-        }
+        if (byAddress.isEmpty()) {return true;}
         else return false;
     }
-
     @Override
     public Optional<Member> findMember(String address) {
-        return Optional.empty();
+        Optional<Member> byAddress = memberRepository.findByAddress(address);
+        return byAddress;
     }
     @Override
     public void deleteMember(String address) {

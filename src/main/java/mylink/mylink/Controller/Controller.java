@@ -7,20 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 //alt + cntr + b ==> 상세보기
 
 public class Controller {
-
     @GetMapping("/")
     public String home() {
         return "home";
     }
-
-    @GetMapping("/login")
-    public String login() {
-        return "MemberService/login";
-    }
-
-    @GetMapping("/join")
-    public String join() {
-        return "MemberService/join";
-    }
-
 }

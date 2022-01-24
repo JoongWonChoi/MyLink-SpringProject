@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface MemberService {
     //회원 가입
-    void join(Member member);
+    boolean join(Member member);
     //회원 조회
     Optional<Member> findMember(String address);
     //회원 삭제
