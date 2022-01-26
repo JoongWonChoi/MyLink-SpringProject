@@ -50,4 +50,9 @@ class MemberServiceImplTest {
         assertThat(all.size()).isNotEqualTo(3);
 
     }
+    @Test
+    void test() {
+
+        
+    }
 }

@@ -55,4 +55,5 @@ public class MemberForm {
     public void setPassword(String password) {
         this.password = password;
     }
+
 }
