@@ -52,7 +52,39 @@ class MemberServiceImplTest {
     }
     @Test
     void test() {
+       /* int a[] = {3, 1, 3, 2, 5,0};
+        int n = a.length;
+        int max = a[0];
+        int min = a[n-1];
+        for (int i = 0; i < n-1; i++) {
+            if(min>a[i+1]){
+                int k = a[i];
+                a[i] = a[i + 1];
+                a[i + 1] = k;
+            }
+            min = a[i + 1];
+            if(max<a[n-2-i]){
+                int f = a[n-1-i];
+                a[n - 1 - i] = a[n - 2 - i];
+                a[n - 2 - i] = f;
+            }
+            max = a[n - i - 2];
+        }
+        for(int j : a){System.out.println(j+" " );}
 
-        
+        *//*for (int i = 0; i < 5; i++) {
+            if(a[i]>max){
+                max = a[i];};
+            if(a[i]<min){
+                min = a[i];}
+        }*//*
+        System.out.println("min = " + min);
+        System.out.println("max = " + max);*/
+
+
+
+
+
+
     }
 }
