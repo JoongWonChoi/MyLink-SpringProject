@@ -28,7 +28,7 @@ class MemberServiceImplTest {
 
     @Test
     void join() {
-        Member member = new Member("최중원", 25, "male", "sw", "wnddnjs1130", "abc123");
+        Member member = new Member("최중원", 26, "male", "sw", "wnddnjs1130", "abc123");
         memberService.join(member);
         Optional<Member> byAddress = memberRepository.findByAddress(member.getAddress());
         System.out.println(byAddress.get().toString());
