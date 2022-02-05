@@ -1,13 +1,13 @@
 package mylink.mylink;
 
-import mylink.mylink.Board.Repository.BoardRepository;
-import mylink.mylink.Board.Repository.MemoryBoardRepository;
-import mylink.mylink.Board.Service.BoardService;
-import mylink.mylink.Board.Service.BoardServiceImpl;
-import mylink.mylink.Member.Repository.MemberRepository;
-import mylink.mylink.Member.Repository.MemoryMemberRepository;
-import mylink.mylink.Member.Service.MemberService;
-import mylink.mylink.Member.Service.MemberServiceImpl;
+import mylink.mylink.repository.boardRepository.BoardRepository;
+import mylink.mylink.repository.boardRepository.MemoryBoardRepository;
+import mylink.mylink.service.boardService.BoardService;
+import mylink.mylink.service.boardService.BoardServiceImpl;
+import mylink.mylink.repository.memberRepository.MemberRepository;
+import mylink.mylink.repository.memberRepository.MemoryMemberRepository;
+import mylink.mylink.service.memberService.MemberService;
+import mylink.mylink.service.memberService.MemberServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

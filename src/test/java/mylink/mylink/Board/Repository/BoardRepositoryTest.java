@@ -1,7 +1,8 @@
 package mylink.mylink.Board.Repository;
 
 import mylink.mylink.AutoAppConfig;
-import mylink.mylink.Board.domain.Board;
+import mylink.mylink.repository.boardRepository.BoardRepository;
+import mylink.mylink.domain.Board;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

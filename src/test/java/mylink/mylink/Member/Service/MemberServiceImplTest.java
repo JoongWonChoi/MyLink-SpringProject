@@ -1,18 +1,12 @@
 package mylink.mylink.Member.Service;
 
 import mylink.mylink.AutoAppConfig;
-import mylink.mylink.Member.Repository.MemberRepository;
-import mylink.mylink.Member.domain.Member;
+import mylink.mylink.repository.memberRepository.MemberRepository;
+import mylink.mylink.service.memberService.MemberService;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
-import java.util.List;
-import java.util.Optional;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 @EnableAutoConfiguration
 class MemberServiceImplTest {
@@ -26,7 +20,7 @@ class MemberServiceImplTest {
         this.memberService = ac.getBean("memberService", MemberService.class);
     }
 
-    @Test
+    /*@Test
     void join() {
         Member member = new Member("최중원", 26, "male", "sw", "wnddnjs1130", "abc123");
         memberService.join(member);
@@ -35,9 +29,9 @@ class MemberServiceImplTest {
 
         assertThat(byAddress.get().getAddress()).isSameAs(member.getAddress());
 
-    }
+    }*/
 
-    @Test
+   /* @Test
     void 아이디_중복_검사() {
         Member member = new Member("최중원", 25, "male", "sw", "wnddnjs1130", "abc123");
         Member member2 = new Member("ghghgh", 24, "male", "sw2", "wnddnjs1130", "abc1234");
@@ -48,43 +42,6 @@ class MemberServiceImplTest {
         List<Member> all = memberRepository.findAll();
         System.out.println(all);
         assertThat(all.size()).isNotEqualTo(3);
+    }*/
 
-    }
-    @Test
-    void test() {
-       /* int a[] = {3, 1, 3, 2, 5,0};
-        int n = a.length;
-        int max = a[0];
-        int min = a[n-1];
-        for (int i = 0; i < n-1; i++) {
-            if(min>a[i+1]){
-                int k = a[i];
-                a[i] = a[i + 1];
-                a[i + 1] = k;
-            }
-            min = a[i + 1];
-            if(max<a[n-2-i]){
-                int f = a[n-1-i];
-                a[n - 1 - i] = a[n - 2 - i];
-                a[n - 2 - i] = f;
-            }
-            max = a[n - i - 2];
-        }
-        for(int j : a){System.out.println(j+" " );}
-
-        *//*for (int i = 0; i < 5; i++) {
-            if(a[i]>max){
-                max = a[i];};
-            if(a[i]<min){
-                min = a[i];}
-        }*//*
-        System.out.println("min = " + min);
-        System.out.println("max = " + max);*/
-
-
-
-
-
-
-    }
 }

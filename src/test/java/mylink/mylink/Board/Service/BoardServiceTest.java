@@ -1,8 +1,9 @@
 package mylink.mylink.Board.Service;
 
 import mylink.mylink.AutoAppConfig;
-import mylink.mylink.Board.Repository.BoardRepository;
-import mylink.mylink.Board.domain.Board;
+import mylink.mylink.repository.boardRepository.BoardRepository;
+import mylink.mylink.service.boardService.BoardService;
+import mylink.mylink.domain.Board;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;

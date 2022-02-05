@@ -1,7 +1,7 @@
 package mylink.mylink;
 
-import mylink.mylink.Board.Repository.BoardRepository;
-import mylink.mylink.Controller.BoardController.BoardController;
+import mylink.mylink.repository.boardRepository.BoardRepository;
+import mylink.mylink.controller.BoardController.BoardController;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
