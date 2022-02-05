@@ -40,8 +40,8 @@ public class MemberServiceImpl implements MemberService{
     }
 
     @Override
-    public Optional<Member> findMember(Long id) {
-        return Optional.empty();
+    public Member findMember(Long id) {
+        return null;
     }
 
     @Override

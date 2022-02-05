@@ -99,8 +99,7 @@ public class BoardController {
     @PostMapping("/board-link/post/update/{id}")
     //@ModelAttribute
     public String updatePost(@PathVariable("id") Long id, @ModelAttribute Board board) {
-        System.out.println("updated board  "+board.getName());
-        System.out.println("updated board  "+board.getAge());
+
         boardService.updatePost(board, id);
         return "redirect:/board-link";
     }

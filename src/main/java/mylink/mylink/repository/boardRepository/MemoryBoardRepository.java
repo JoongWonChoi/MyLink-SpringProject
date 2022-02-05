@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 
-@Component
+
 public class MemoryBoardRepository implements BoardRepository {
     HashMap<Long, Board> store = new HashMap<>();
     private static long index = 0L; // key값 생성
@@ -17,7 +17,7 @@ public class MemoryBoardRepository implements BoardRepository {
     @Override
     //게시물 정보 단순 저장
     public Board save(Board board) {
-        board.setIndex(++index);
+        /*board.setIndex(++index);*/
         store.put(index, board);
         return board;
     }
@@ -31,15 +31,17 @@ public class MemoryBoardRepository implements BoardRepository {
     @Override
     public void update(Board updatedBoard, Long index) { //넘어온 업데이트된 게시물로 덮어쓰기
         /*System.out.println("update in Repository  " + updatedBoard.getName());
-        System.out.println("index = " + index);*/
+        System.out.println("index = " + index);
+
         Board beforeUpdate = store.get(index);
-        /*System.out.println("beforeUpdate.getName() = " + beforeUpdate.getName());*/
+        System.out.println("beforeUpdate.getName() = " + beforeUpdate.getName());
+
         beforeUpdate.setName(updatedBoard.getName());
         beforeUpdate.setAge(updatedBoard.getAge());
         beforeUpdate.setSex(updatedBoard.getSex());
         beforeUpdate.setDepartment(updatedBoard.getDepartment());
         beforeUpdate.setTitle(updatedBoard.getTitle());
-        beforeUpdate.setBody(updatedBoard.getBody());
+        beforeUpdate.setBody(updatedBoard.getBody());*/
     }
 
     @Override
