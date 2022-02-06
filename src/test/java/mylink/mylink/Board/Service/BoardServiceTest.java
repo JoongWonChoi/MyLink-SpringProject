@@ -32,6 +32,7 @@ class BoardServiceTest {
         BoardRepository boardRepository = ac.getBean("boardRepository", BoardRepository.class);
         boardRepository.clear();
     }
+/*
 
     @Test
     void 게시물_Create() {
@@ -68,15 +69,19 @@ class BoardServiceTest {
         //2번 게시물을 삭제한 후 id 확인.
         System.out.println("After delete --> ");boardRepository.findAllBoards(); //싱글톤 boardRepository 객체에서 게시물이 삭제되었나 확인
 
-        /*//BoardRepository hashmap에서 저장된 게시물 두가지 중 2번쨰 게시물은 remove된 것이지 2번 index를 갖는 board가 아예 사라진 것은 아님!!
+        */
+/*//*
+/BoardRepository hashmap에서 저장된 게시물 두가지 중 2번쨰 게시물은 remove된 것이지 2번 index를 갖는 board가 아예 사라진 것은 아님!!
         //따라서 이렇게 로그를 출력하면 여전히 board에 관한 정보가 출력됨.
         System.out.println("board.getIndex() = " + board.getIndex());
-        System.out.println("board2.getIndex() = " + board2.getIndex());*/
+        System.out.println("board2.getIndex() = " + board2.getIndex());*//*
+
         //then
         //assertThat(boardRepository.findById(2L)).isEqualTo(board2);
         assertThat(boardRepository.findById(2L)).isNotSameAs(board2);
 
     }
+*/
 
     /*@Test
     void 중복_제목_판별(){

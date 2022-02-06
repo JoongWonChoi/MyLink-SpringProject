@@ -2,13 +2,14 @@ package mylink.mylink.domain;
 
 
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter
+@Getter @Setter
 public class Member {
 
     /*기존의 도메인 설계는 단지 클래스 형태로, 필드값을 미리 선언해 놓은 후 사용하는 용도로 인식하여 설계하였다.

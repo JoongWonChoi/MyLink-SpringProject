@@ -2,12 +2,13 @@ package mylink.mylink.domain;
 
 
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Getter
+@Getter @Setter
 public class Board {
 
     @GeneratedValue @Id

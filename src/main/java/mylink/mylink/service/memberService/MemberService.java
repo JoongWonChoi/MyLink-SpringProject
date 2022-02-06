@@ -10,7 +10,7 @@ public interface MemberService {
     //회원 가입
     Long join(Member member);
     //회원 조회
-    Optional<Member> findMember(Long id);
+    Member findMember(Long id);
     //회원 삭제
     void deleteMember(Long id);
     //회원 수정
