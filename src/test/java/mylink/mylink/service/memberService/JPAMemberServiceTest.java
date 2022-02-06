@@ -2,7 +2,6 @@ package mylink.mylink.service.memberService;
 
 import mylink.mylink.domain.Member;
 import mylink.mylink.repository.memberRepository.MemberRepository;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,30 +9,25 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import javax.swing.text.html.parser.Entity;
-
-import static org.assertj.core.api.Assertions.*;
-
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.fail;
 
 
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
 @Transactional
-
 class JPAMemberServiceTest {
 
     @Autowired
-    MemberService memberService;
+    public MemberService memberService;
     @Autowired
     MemberRepository memberRepository;
-    @Autowired
-    EntityManager em;
+
 
     @Test
     void
     join() {
-        //give
+        //given
         Member member = new Member();
         member.setName("a");
         member.setAddress("address");
@@ -43,7 +37,7 @@ class JPAMemberServiceTest {
 
         //then
         assertThat(memberService.findMember(1L).getName()).isEqualTo("a");
-        //assertThat(memberService.findMember(1L).getAddress()).isEqualTo("address");
+        assertThat(memberService.findMember(1L).getAddress()).isEqualTo("address");
     }
 
     @Test
@@ -57,10 +51,13 @@ class JPAMemberServiceTest {
 
         //when
         memberService.join(member);
-        memberService.join(member2);
-
-
+        try {
+            memberService.join(member2);
+        } catch (IllegalStateException e) {
+            return;
+        }
         //then
+        fail();
 
 
 

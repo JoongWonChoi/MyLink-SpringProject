@@ -1,14 +1,13 @@
 package mylink.mylink.service.memberService;
 
-import mylink.mylink.repository.memberRepository.MemberRepository;
 import mylink.mylink.domain.Member;
+import mylink.mylink.repository.memberRepository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
-@Service
+//@Service
 @Transactional
 public class MemberServiceImpl implements MemberService{
     private final MemberRepository memberRepository;

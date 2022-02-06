@@ -1,6 +1,7 @@
 package mylink.mylink.repository.memberRepository;
 
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import mylink.mylink.domain.Member;
 import org.springframework.stereotype.Repository;
 
@@ -10,6 +11,7 @@ import java.util.List;
 
 @Repository
 @Getter
+@RequiredArgsConstructor
 public class JPAMemberRepository implements MemberRepository{
     /*최대한 DB에 접근, 조회, 반환 의 단순 임무를 수행하게끔 설계*/
 

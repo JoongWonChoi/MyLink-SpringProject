@@ -13,12 +13,12 @@ import java.util.List;
 import java.util.Optional;
 
 
-@Getter
-@RequiredArgsConstructor
-@Transactional(readOnly = true)
 /*실질적 클라이언트에게 제공하는 비즈니스 로직을 작성하도록 한다.
  * 이 때 서바스 로직 단에서는 기능의 시작과 끝 쌍을 지어야하기 때문에 트랜잭션 기능을 추가하였다.*/
 @Service
+@Getter
+@RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class JPAMemberService implements MemberService {
 
     @Autowired

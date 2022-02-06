@@ -1,28 +1,22 @@
 package mylink.mylink.controller.BoardController;
 
-import mylink.mylink.AutoAppConfig;
 import mylink.mylink.repository.boardRepository.BoardRepository;
-import mylink.mylink.domain.Board;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 @Component
 class BoardControllerTest {
     BoardRepository boardRepository;
     BoardController boardController;
 
-    @BeforeEach
+  /*  @BeforeEach
     void beforeEach() {
         AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(AutoAppConfig.class);
         this.boardRepository = ac.getBean("boardRepository", BoardRepository.class);
         this.boardController = ac.getBean("boardController", BoardController.class);
-    }
+    }*/
     @AfterEach
     void clear(){
         boardRepository.clear();

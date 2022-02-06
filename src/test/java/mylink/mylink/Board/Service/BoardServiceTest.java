@@ -1,17 +1,5 @@
 package mylink.mylink.Board.Service;
 
-import mylink.mylink.AutoAppConfig;
-import mylink.mylink.repository.boardRepository.BoardRepository;
-import mylink.mylink.service.boardService.BoardService;
-import mylink.mylink.domain.Board;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Test;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.transaction.annotation.Transactional;
-
-import static org.assertj.core.api.Assertions.assertThat;
-
 class BoardServiceTest {
     /*BoardService boardService;
     BoardRepository boardRepository;*/
@@ -26,12 +14,12 @@ class BoardServiceTest {
 
     //BoardService boardService = new BoardService();
 
-    @AfterEach
+   /* @AfterEach
     void clear(){
         ApplicationContext ac = new AnnotationConfigApplicationContext(AutoAppConfig.class);
         BoardRepository boardRepository = ac.getBean("boardRepository", BoardRepository.class);
         boardRepository.clear();
-    }
+    }*/
 /*
 
     @Test

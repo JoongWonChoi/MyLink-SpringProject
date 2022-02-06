@@ -1,11 +1,13 @@
 package mylink.mylink.repository.memberRepository;
 
 import mylink.mylink.domain.Member;
-import org.springframework.stereotype.Repository;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-@Repository
+//@Repository
 public class MemoryMemberRepository implements MemberRepository{
     Map<String, Member> store = new HashMap<>();
     private static long index = 0L;

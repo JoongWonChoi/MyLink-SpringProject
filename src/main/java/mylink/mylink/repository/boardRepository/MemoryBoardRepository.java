@@ -1,7 +1,7 @@
 package mylink.mylink.repository.boardRepository;
 
 import mylink.mylink.domain.Board;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 
-
+@Repository
 public class MemoryBoardRepository implements BoardRepository {
     HashMap<Long, Board> store = new HashMap<>();
     private static long index = 0L; // key값 생성

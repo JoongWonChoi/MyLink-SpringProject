@@ -1,18 +1,22 @@
 package mylink.mylink.controller.MemberController;
 
 
+import lombok.RequiredArgsConstructor;
 import mylink.mylink.service.memberService.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
+@RequiredArgsConstructor
 public class MemberController {
-    private final MemberService memberService;
     @Autowired
-    public MemberController(MemberService memberService) {
+    private final MemberService memberService;
+
+
+    /*public MemberController(MemberService memberService) {
         this.memberService = memberService;
-    }
+    }*/
 
 
     @GetMapping("/join")

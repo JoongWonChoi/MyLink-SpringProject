@@ -1,5 +1,6 @@
 package mylink.mylink.controller.BoardController;
 
+import lombok.RequiredArgsConstructor;
 import mylink.mylink.service.boardService.BoardService;
 import mylink.mylink.domain.Board;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,14 +13,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.util.List;
 
 @Controller
+@RequiredArgsConstructor
 public class BoardController {
 
+    @Autowired
     private final BoardService boardService; //final 키워드를 통해 전달받아온 의존관계에 대한 수정 및 누락 불가.
 
-        @Autowired
-        public BoardController(BoardService boardService) {
-            this.boardService = boardService;
-        }
+
 
     //Move to each Boards.
     @GetMapping("/board-link")

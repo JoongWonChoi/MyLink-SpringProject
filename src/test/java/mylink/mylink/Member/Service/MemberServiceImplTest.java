@@ -1,24 +1,14 @@
 package mylink.mylink.Member.Service;
 
-import mylink.mylink.AutoAppConfig;
 import mylink.mylink.repository.memberRepository.MemberRepository;
 import mylink.mylink.service.memberService.MemberService;
-import org.junit.jupiter.api.BeforeEach;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 @EnableAutoConfiguration
 class MemberServiceImplTest {
     MemberRepository memberRepository;
     MemberService memberService;
 
-    @BeforeEach
-    void beforeEach() {
-        ApplicationContext ac = new AnnotationConfigApplicationContext(AutoAppConfig.class);
-        this.memberRepository = ac.getBean("memberRepository", MemberRepository.class);
-        this.memberService = ac.getBean("memberService", MemberService.class);
-    }
 
     /*@Test
     void join() {
@@ -29,6 +19,12 @@ class MemberServiceImplTest {
 
         assertThat(byAddress.get().getAddress()).isSameAs(member.getAddress());
 
+    }*/
+   /* @BeforeEach
+    void beforeEach() {
+        ApplicationContext ac = new AnnotationConfigApplicationContext(AutoAppConfig.class);
+        this.memberRepository = ac.getBean("memberRepository", MemberRepository.class);
+        this.memberService = ac.getBean("memberService", MemberService.class);
     }*/
 
    /* @Test
