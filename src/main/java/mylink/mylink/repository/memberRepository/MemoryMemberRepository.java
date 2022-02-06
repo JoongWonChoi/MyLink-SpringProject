@@ -43,4 +43,9 @@ public class MemoryMemberRepository implements MemberRepository{
     public void delete(Long id) {
 
     }
+
+    @Override
+    public void update(Long id, String name, int age, String sex, String department, String address, String password) {
+
+    }
 }

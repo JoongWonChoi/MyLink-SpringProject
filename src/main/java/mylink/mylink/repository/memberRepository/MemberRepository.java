@@ -22,6 +22,9 @@ public interface MemberRepository {
     //엔티티 삭제
     void delete(Long id);
 
+    //업데이트
+    void update(Long id, String name, int age, String sex, String department, String address, String password);
+
 
 
 }

@@ -38,8 +38,14 @@ public class JPAMemberRepository implements MemberRepository{
 
     @Override
     public void delete(Long id) {
-        Member findMember = em.find(Member.class, id);
+        Member findMember = findMember(id);
         em.remove(findMember);
+    }
+
+    @Override
+    public void update(Long id, String name, int age, String sex, String department, String address, String password) {
+        Member member = findMember(id); //영속성 컨텍스트에 저장되어있는 멤버 객체 반환
+        member.updateMember(name, age, sex, department, address, password); //Member 도메인 내의 수정 로직 실행
     }
 
     @Override

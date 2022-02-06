@@ -58,9 +58,12 @@ public class JPAMemberService implements MemberService {
 
     @Override
     public void updateMember(Long id, String name, int age, String sex, String department, String address, String password) {
-
+        memberRepository.update(id, name, age, sex, department, address, password);
     }
-
+    @Override
+    public List<Member> findMembers() {
+        return memberRepository.findAll();
+    }
 
     @Override
     public Optional<Member> login(String address, String password) {
@@ -72,8 +75,5 @@ public class JPAMemberService implements MemberService {
 
     }
 
-    @Override
-    public List<Member> findMembers() {
-        return memberRepository.findAll();
-    }
+
 }

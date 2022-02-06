@@ -59,12 +59,11 @@
                     <a href="#" th:href="@{/members/{id}/edit (id=${member.id})}"
                        class="btn btn-primary" role="button">수정</a>
                 </td>
-
-                <form method="post" th:href="@{/members/{id}/delete (id=${member.id})}">
-                    <button type="submit" onclick="alert('delete complete!')">Delete</button>
-                </form>
+                <td>
+                    <a href="#" th:href="@{/members/{id}/delete (id=${member.id})}"
+                       class="btn btn-primary" role="button">삭제</a>
+                </td>
             </tr>
-
             </tbody>
         </table>
     </div>

@@ -75,6 +75,7 @@ class JPAMemberServiceTest {
         assertThat(memberService.findMember(1L)).isEqualTo(null);
 
     }
+
     /*public void setMember() {
         Member member = new Member();
         member.setName("a");
@@ -82,5 +83,19 @@ class JPAMemberServiceTest {
 
         memberService.join(member);
     }*/
+    @Test
+    void 업데이트() {
+        //given
+        Member member = new Member();
+        member.setName("jwc");
+        member.setAddress("address");
+        memberService.join(member);
+
+        //when
+        memberService.updateMember(1L,"update",10, "male","ddd","adf","1232");
+
+        //then
+        assertThat(memberService.findMember(1L).getName()).isEqualTo("update");
+    }
 
 }

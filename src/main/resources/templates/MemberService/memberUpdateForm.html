@@ -6,7 +6,7 @@
 <body>
 <div class="container">
     <tr th:each="member : ${member}">
-        <form method="post" th:href="@{/member/{id}/edit (id=${member.id})}">
+        <form method="post" th:href="@{/members/{id}/edit (id=${member.id})}">
             <div class="form-group">
                 <div>
                     <label form="name">이름</label>
@@ -36,7 +36,6 @@
                 </div>
 
             </div>
-
             <button type="submit" onclick="alert('complete!')">등록</button>
         </form>
 
