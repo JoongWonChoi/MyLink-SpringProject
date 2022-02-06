@@ -48,16 +48,18 @@ public class MemberServiceImpl implements MemberService{
 
     }
 
+    @Override
+    public void updateMember(Long id, String name, int age, String sex, String department, String address, String password) {
+
+    }
+
     /* @Override
      public Optional<Member> findMember(String address) {
          Optional<Member> byAddress = memberRepository.findByAddress(address);
          return byAddress;
      }
      */
-    @Override
-    public void updateMember(String address, Member updatedMember) {
 
-    }
     @Override
     public Optional<Member> login(String address, String password) {
         return Optional.empty();

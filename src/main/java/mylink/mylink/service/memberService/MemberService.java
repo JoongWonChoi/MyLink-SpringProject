@@ -14,7 +14,7 @@ public interface MemberService {
     //회원 삭제
     void deleteMember(Long id);
     //회원 수정
-    void updateMember(String address, Member updatedMember);
+    void updateMember(Long id, String name, int age, String sex, String department,String address, String password);
 
     //로그인
     //Optional<Member> login(String address, String password); //엔티티의 식별자로 각 객체를 식별하므로, address로 판별하는 것보다 식별자를 사용하는 방식이 더 나을 것 같다.

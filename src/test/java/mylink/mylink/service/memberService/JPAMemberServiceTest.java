@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 class JPAMemberServiceTest {
 
     @Autowired
-    public MemberService memberService;
+    MemberService memberService;
     @Autowired
     MemberRepository memberRepository;
 
@@ -42,7 +42,7 @@ class JPAMemberServiceTest {
 
     @Test
     void 중복_아이디_검사() {
-        //give
+        //given
         Member member = new Member();
         member.setAddress("address");
 
@@ -54,13 +54,33 @@ class JPAMemberServiceTest {
         try {
             memberService.join(member2);
         } catch (IllegalStateException e) {
+            e.printStackTrace();
             return;
         }
         //then
         fail();
+    }
 
+    @Test
+    void 객체_삭제() {
+        //given
+        Member member = new Member();
+        member.setAddress("address");
+        memberService.join(member);
 
+        //when
+        memberService.deleteMember(1L);
+
+        //then
+        assertThat(memberService.findMember(1L)).isEqualTo(null);
 
     }
+    /*public void setMember() {
+        Member member = new Member();
+        member.setName("a");
+        member.setAddress("address");
+
+        memberService.join(member);
+    }*/
 
 }

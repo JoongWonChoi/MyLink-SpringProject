@@ -38,4 +38,9 @@ public class MemoryMemberRepository implements MemberRepository{
     public Member findMember(Long id) {
         return null;
     }
+
+    @Override
+    public void delete(Long id) {
+
+    }
 }

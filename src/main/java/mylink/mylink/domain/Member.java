@@ -37,5 +37,26 @@ public class Member {
     @OneToMany(mappedBy = "member") //Order 클래스의 Member타입을 참조하는 'member' 필드에 의해 참조됨
     private List<Board> boards = new ArrayList<>();
 
+    //=====비즈니스 로직=====//
+
+    //멤버 생성 로직
+    public void createMember(String name, int age, String sex, String department, String address, String password) {
+        this.name = name;
+        this.age = age;
+        this.sex = sex;
+        this.department = department;
+        this.address = address;
+        this.password = password;
+    }
+
+    //멤버 수정 로직
+    public void updateMember(String name, int age, String sex, String department, String address, String password) {
+        this.name = name;
+        this.age = age;
+        this.sex = sex;
+        this.department = department;
+        this.address = address;
+        this.password = password;
+    }
 
 }

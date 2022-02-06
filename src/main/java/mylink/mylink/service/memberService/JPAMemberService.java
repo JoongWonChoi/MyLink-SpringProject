@@ -40,7 +40,7 @@ public class JPAMemberService implements MemberService {
     private void validateDuplicateMember(Member member) {//
         List<Member> byAddress = memberRepository.findByAddress(member.getAddress());
         System.out.println(byAddress.toString());
-        if (byAddress.size()!=0) {
+        if (byAddress.size()!=0) { //아이디(address)로 검색한 Member테이블의 크기가 0 이 아님==> 해당 아이디를 쓰는 멤버 객체가 하나 이상존재한다는 의미
             throw new IllegalStateException("already exists . .");
         }
     }
@@ -53,13 +53,14 @@ public class JPAMemberService implements MemberService {
 
     @Override
     public void deleteMember(Long id) {
-
+        memberRepository.delete(id);
     }
 
     @Override
-    public void updateMember(String address, Member updatedMember) {
+    public void updateMember(Long id, String name, int age, String sex, String department, String address, String password) {
 
     }
+
 
     @Override
     public Optional<Member> login(String address, String password) {
@@ -73,6 +74,6 @@ public class JPAMemberService implements MemberService {
 
     @Override
     public List<Member> findMembers() {
-        return null;
+        return memberRepository.findAll();
     }
 }

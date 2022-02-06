@@ -37,8 +37,15 @@ public class JPAMemberRepository implements MemberRepository{
     }
 
     @Override
-    public List<Member> findAll() {
-        return em.createQuery("find m from Member m", Member.class).getResultList(); //Member 엔티티 조회 타입으로 조회, 리스트 형태로 반환
+    public void delete(Long id) {
+        Member findMember = em.find(Member.class, id);
+        em.remove(findMember);
     }
+
+    @Override
+    public List<Member> findAll() {
+        return em.createQuery("select m from Member m", Member.class).getResultList(); //Member 엔티티 조회 타입으로 조회, 리스트 형태로 반환
+    }
+
 
 }

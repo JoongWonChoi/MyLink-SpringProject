@@ -19,6 +19,8 @@ public interface MemberRepository {
     List<Member> findAll();
     //식별자로 조회
     Member findMember(Long id);
+    //엔티티 삭제
+    void delete(Long id);
 
 
 
