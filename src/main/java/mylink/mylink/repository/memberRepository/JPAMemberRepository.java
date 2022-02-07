@@ -53,5 +53,4 @@ public class JPAMemberRepository implements MemberRepository{
         return em.createQuery("select m from Member m", Member.class).getResultList(); //Member 엔티티 조회 타입으로 조회, 리스트 형태로 반환
     }
 
-
 }

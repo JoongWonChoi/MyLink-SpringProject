@@ -76,6 +76,4 @@ public class JPAMemberService implements MemberService {
     public void logout(String address) {
 
     }
-
-
 }
