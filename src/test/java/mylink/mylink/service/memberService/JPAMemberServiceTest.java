@@ -84,6 +84,7 @@ class JPAMemberServiceTest {
         memberService.join(member);
     }*/
     @Test
+    //@Rollback(value = false) ==> Rollback을 하지 않고 실제 DB에 담기는 것 까지 확인
     void 업데이트() {
         //given
         Member member = new Member();
@@ -95,6 +96,7 @@ class JPAMemberServiceTest {
         memberService.updateMember(1L,"update",10, "male","ddd","adf","1232");
 
         //then
+        System.out.println(memberService.findMember(1L).toString());
         assertThat(memberService.findMember(1L).getName()).isEqualTo("update");
     }
 

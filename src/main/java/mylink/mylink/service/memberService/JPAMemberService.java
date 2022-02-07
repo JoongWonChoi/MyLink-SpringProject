@@ -52,11 +52,13 @@ public class JPAMemberService implements MemberService {
     }
 
     @Override
+    @Transactional
     public void deleteMember(Long id) {
         memberRepository.delete(id);
     }
 
     @Override
+    @Transactional
     public void updateMember(Long id, String name, int age, String sex, String department, String address, String password) {
         memberRepository.update(id, name, age, sex, department, address, password);
     }
