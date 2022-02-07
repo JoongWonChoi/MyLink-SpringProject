@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
-<head>
-
-</head>
+<head th:replace="fragments/header :: header" />
 <body>
+<div th:replace="fragments/bodyHeader :: bodyHeader"/>
 <div class="container">
     <tr th:each="post : ${post}">
         <form method="post" th:href="@{/board-link/post/update/{id}(id=${post.index})}">
