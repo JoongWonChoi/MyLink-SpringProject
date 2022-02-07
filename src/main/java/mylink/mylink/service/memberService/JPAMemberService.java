@@ -67,9 +67,31 @@ public class JPAMemberService implements MemberService {
         return memberRepository.findAll();
     }
 
+    /*===로그인===*/
+    /*1. 내가 생각한 로직
+     * View의 로그인 폼에서는 보통 아이디(address)와 비밀번호(password)가 넘어온다. 다른 정보 기입은 본 적이 없음.
+     * 따라서 로그인 폼으로 넘어오는 아이디와 비밀번호 정보만을 갖고 로그인 검증을 해야한다고 생각.
+     * ::로그인 폼에서 address, password 바인딩 -> 컨트롤러를 통해 서비스 비즈니스 로직으로 전달
+     * ->저장소에서 address로 객체를 찾고(findByAddress), 해당 객체의 password가 파라미터로 넘어온 password와 일치하는지 확인
+     * -> 아이디와 비밀번호를 통해 기존의 객체 정보와 일치 불일치 여부를 다시 반환하는 트랜잭션 개발
+     * 최종 전달을 받는 컨트롤러에서는 객체가 반환되거나(일치) 그렇지 않다면 아무것도 반환되지 않을 것.(null)
+     *
+     * <예외처리를 하지 않는 이유?>
+     * 로그인 검증 결과를 확실하게 객체 vs null로 구분을 하여 컨트롤러에 넘길 생각.
+     * 그러면 그에 따른 로그인 View 폼에서의 결과 반환을 나눌 수 있지 않을까?
+     */
     @Override
-    public Optional<Member> login(String address, String password) {
-        return Optional.empty();
+    @Transactional
+    public Member login(String address, String password) {
+        Member loginMember = memberRepository.login(address, password);
+        //memberRepository를 통해 검증을 마치고, 존재하는 회원인지 판별
+        if (loginMember == null) {
+            return null;
+        }
+        else{
+            return loginMember;
+        }
+
     }
 
     @Override

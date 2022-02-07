@@ -3,8 +3,20 @@
 <head th:replace="fragments/header :: header" />
 <body>
     <div th:replace="fragments/bodyHeader :: bodyHeader"/>
-
-Login
-
+    <div class="container">
+        <form action="/login" method="post">
+            <div class="form-group">
+                <div>
+                    <label form="address">아이디</label>
+                    <input class="form-control"type="text" id="address" name="address" placeholder="아이디">
+                </div>
+                <div>
+                    <label form="password">비밀번호</label>
+                    <input class="form-control" type="password" id="password" name="password" placeholder="비밀번호">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">로그인!</button>
+        </form>
+    </div>
 </body>
 </html>

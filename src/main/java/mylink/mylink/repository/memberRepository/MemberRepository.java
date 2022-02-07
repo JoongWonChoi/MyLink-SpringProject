@@ -25,6 +25,12 @@ public interface MemberRepository {
     //업데이트
     void update(Long id, String name, int age, String sex, String department, String address, String password);
 
+    //로그인
+    //Optional 반환 or 그냥 Member 자료형 반환?
+    Member login(String address, String password);
+
+    //로그아웃
+
 
 
 }

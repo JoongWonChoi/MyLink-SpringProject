@@ -48,4 +48,9 @@ public class MemoryMemberRepository implements MemberRepository{
     public void update(Long id, String name, int age, String sex, String department, String address, String password) {
 
     }
+
+    @Override
+    public Member login(String address, String password) {
+        return null;
+    }
 }

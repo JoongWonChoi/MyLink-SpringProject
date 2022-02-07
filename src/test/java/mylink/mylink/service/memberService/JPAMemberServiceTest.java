@@ -100,4 +100,25 @@ class JPAMemberServiceTest {
         assertThat(memberService.findMember(1L).getName()).isEqualTo("update");
     }
 
+    @Test
+    void login() {
+        //given
+        Member member = new Member();
+        member.setName("jwc");
+        member.setAddress("address");
+        member.setPassword("1234");
+        memberService.join(member);
+
+        //when
+        Member loginMember = memberService.login("address", "1234");
+        Member errorMember1 = memberService.login("address1", "1234");
+        Member errorMember2 = memberService.login("address", "1234566788");
+        //Member errorMember3 = memberService.login("address", "1234566788");
+
+        //then
+        assertThat(loginMember).isEqualTo(member);
+        assertThat(errorMember1).isEqualTo(null);
+        assertThat(errorMember2).isEqualTo(null);
+    }
+
 }

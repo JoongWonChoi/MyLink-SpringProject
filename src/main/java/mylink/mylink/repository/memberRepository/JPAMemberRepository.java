@@ -49,6 +49,22 @@ public class JPAMemberRepository implements MemberRepository{
     }
 
     @Override
+    public Member login(String address, String password) {
+        //1. 아이디(address)로 해당하는 회원 객체 있는지 확인
+        List<Member> byAddress = findByAddress(address);
+        if (byAddress.size() == 0) { //address 파라미터로 탐색한 리스트 사이즈가 0 ==> 해당하는 아이디의 회원 객체가 존재하지 않음.
+            return null;
+        }
+        Member validMember = byAddress.get(0); //회원 객체가 존재한다면, 중복 회원 존재는 불가능 하므로 항상 0번째 인덱스에 객체 존재할 것.
+        if (validMember.getPassword() != password) { //아이디에 맞는 존재하는 객체의 비밀번호와 파라미터로 넘어온 객체의 비밀번호 검증
+            return null;
+        }
+        else{
+            return validMember;
+        }
+    }
+
+    @Override
     public List<Member> findAll() {
         return em.createQuery("select m from Member m", Member.class).getResultList(); //Member 엔티티 조회 타입으로 조회, 리스트 형태로 반환
     }

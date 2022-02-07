@@ -23,7 +23,7 @@ public interface MemberService {
     *
     * 그냥 address와 password를 넘기고, 이에 해당하는 객체를 찾아내는 로직을 만들자.
     * 그렇게 하면 이에 맞는 Member객체를 받아올 수 있을 것.*/
-    Optional<Member> login(String address, String password);
+    Member login(String address, String password);
 
     //로그아웃
     void logout(String address);

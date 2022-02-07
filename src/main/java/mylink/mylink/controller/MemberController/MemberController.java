@@ -104,9 +104,27 @@ public class MemberController {
         }
     }*/
     /*===로그인===*/
+    /*1. 내가 생각한 로직
+    * View의 로그인 폼에서는 보통 아이디(address)와 비밀번호(password)가 넘어온다. 다른 정보 기입은 본 적이 없음.
+    * 따라서 로그인 폼으로 넘어오는 아이디와 비밀번호 정보만을 갖고 로그인 검증을 해야한다고 생각.
+    * ::로그인 폼에서 address, password 바인딩 -> 컨트롤러를 통해 서비스 비즈니스 로직으로 전달
+    * ->저장소에서 address로 객체를 찾고(findByAddress), 해당 객체의 password가 파라미터로 넘어온 password와 일치하는지 확인
+    * -> 아이디와 비밀번호를 통해 기존의 객체 정보와 일치 불일치 여부를 다시 반환하는 트랜잭션 개발
+    * 최종 전달을 받는 컨트롤러에서는 객체가 반환되거나(일치) 그렇지 않다면 아무것도 반환되지 않을 것.(null)*/
+
     @GetMapping("/login")
-    public String login() {
+    public String loginForm() {
         return "MemberService/login";
+    }
+
+    @PostMapping("/login")
+    public String login(MemberForm form) {
+        Member loginMember = memberService.login(form.getAddress(), form.getPassword());
+        if (loginMember != null) {
+            return "redirect:/";
+        }
+        else{return "MemberService/loginFailed";}
+
     }
 
 }

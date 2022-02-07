@@ -11,6 +11,7 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -53,8 +54,34 @@ class MemberControllerTest {
         memberController.updateMember(1L, form);
 
         //then
-        Assertions.assertThat(memberService.findMember(1L).getName()).isEqualTo("test");
-        Assertions.assertThat(memberService.findMember(1L).getAddress()).isEqualTo("address");
+        assertThat(memberService.findMember(1L).getName()).isEqualTo("test");
+        assertThat(memberService.findMember(1L).getAddress()).isEqualTo("address");
+    }
+
+    @Test
+    void login() {
+        //given
+        Member member = new Member();
+        member.setAddress("jwc");
+        member.setPassword("1234");
+        memberService.join(member);
+
+        MemberForm form = new MemberForm();
+        form.setAddress("jwc");
+        form.setPassword("1234");
+
+        MemberForm errorForm = new MemberForm();
+        form.setAddress("jwc12345");
+        form.setPassword("1234");
+
+        //when
+        String validation = memberController.login(form);
+        String errorValidation = memberController.login(errorForm);
+
+        //then
+        assertThat(validation).isEqualTo("redirect:/");
+        assertThat(errorValidation).isEqualTo("MemberService/loginFailed");
+
     }
 
 }
