@@ -61,6 +61,13 @@ public class JPAMemberRepository implements MemberRepository{
         //문제 발생 ==> 파라미터로 넘어온 password가 validMember의 비밀번호와 값은 같아도 다른 정보로 인지함.
         System.out.println(password== validMember.getPassword());
         // '=='연산 비교 말고 equals()로 비교하니 같은 값으로 인식! 무슨 차이가 있는거지??
+        /* ********* '==' vs equals() *********
+          == : 두 대상에 할당된 주소값을 비교
+          equals() : 비교하고자 하는 두 대상의 값 자체를 비교
+        * String 은 int, char과 같은 일반 자료형과 달리 "클래스" 이다.
+        클래스는 기본적으로 생성 시 주소 값이 부여된다.(Call By Reference형태). 즉 같은 String 값을 생성하더라도, 각각의 주소값은 다름.
+        따라서 String(문자열)의 비교를 ==로 진행하게 되면, 비교할 두 대상의 직접적인 값을 비교하는 것이 아닌
+        할당된 주소값을 비교하는 것!!*/
         System.out.println(validMember.getPassword().equals(password));
 
         if (!validMember.getPassword().equals(password)) { //아이디에 맞는 존재하는 객체의 비밀번호와 파라미터로 넘어온 객체의 비밀번호 검증
@@ -70,7 +77,6 @@ public class JPAMemberRepository implements MemberRepository{
             return validMember;
         }
     }
-
     @Override
     public List<Member> findAll() {
         return em.createQuery("select m from Member m", Member.class).getResultList(); //Member 엔티티 조회 타입으로 조회, 리스트 형태로 반환
