@@ -81,17 +81,14 @@ public class JPAMemberService implements MemberService {
      * 그러면 그에 따른 로그인 View 폼에서의 결과 반환을 나눌 수 있지 않을까?
      */
     @Override
-    @Transactional
     public Member login(String address, String password) {
         Member loginMember = memberRepository.login(address, password);
+        System.out.println("in service"+loginMember);
         //memberRepository를 통해 검증을 마치고, 존재하는 회원인지 판별
         if (loginMember == null) {
             return null;
         }
-        else{
-            return loginMember;
-        }
-
+        return loginMember;
     }
 
     @Override

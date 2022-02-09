@@ -56,7 +56,14 @@ public class JPAMemberRepository implements MemberRepository{
             return null;
         }
         Member validMember = byAddress.get(0); //회원 객체가 존재한다면, 중복 회원 존재는 불가능 하므로 항상 0번째 인덱스에 객체 존재할 것.
-        if (validMember.getPassword() != password) { //아이디에 맞는 존재하는 객체의 비밀번호와 파라미터로 넘어온 객체의 비밀번호 검증
+        System.out.println("in repo  "+validMember);
+        System.out.println("param password = " + password + "member password = " + validMember.getPassword());
+        //문제 발생 ==> 파라미터로 넘어온 password가 validMember의 비밀번호와 값은 같아도 다른 정보로 인지함.
+        System.out.println(password== validMember.getPassword());
+        // '=='연산 비교 말고 equals()로 비교하니 같은 값으로 인식! 무슨 차이가 있는거지??
+        System.out.println(validMember.getPassword().equals(password));
+
+        if (!validMember.getPassword().equals(password)) { //아이디에 맞는 존재하는 객체의 비밀번호와 파라미터로 넘어온 객체의 비밀번호 검증
             return null;
         }
         else{

@@ -120,6 +120,8 @@ public class MemberController {
     @PostMapping("/login")
     public String login(MemberForm form) {
         Member loginMember = memberService.login(form.getAddress(), form.getPassword());
+        System.out.println(form.getAddress()+form.getPassword());
+        System.out.println(loginMember);
         if (loginMember != null) {
             return "redirect:/";
         }
