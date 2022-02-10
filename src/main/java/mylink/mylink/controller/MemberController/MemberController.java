@@ -9,13 +9,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -125,21 +126,36 @@ public class MemberController {
     }
 
     @PostMapping("/login")
-    public String login(@Valid MemberForm memberForm, BindingResult bindingResult) {
-        Member loginMember = memberService.login(memberForm.getAddress(), memberForm.getPassword());
-        /*System.out.println(form.getAddress()+form.getPassword());
-        System.out.println(loginMember);*/
-        if (loginMember != null) {
-            return "redirect:/";
+    public String login(@Valid MemberForm memberForm, BindingResult bindingResult, HttpServletRequest request, HttpServletResponse response) {
+        /*String id = request.getParameter("id");
+        String pw = request.getParameter("pw");
+
+        if (id.isEmpty() || pw.isEmpty()) {
+            System.out.println("id or pw please");
         }
-        else{
+        HttpSession session = request.getSession();
+        if (session.getAttribute("id") == null) {
+            session.setAttribute("id", memberForm.getAddress());
+            session.setAttribute("pw", memberForm.getPassword());
+            System.out.println("로그인 완료");
+        }*/
+        HttpSession session = (HttpSession) request.getSession(true);
+        Member loginMember = memberService.login(memberForm.getAddress(), memberForm.getPassword());
+
+        if (loginMember != null) {
+            session.setAttribute("loginMember",loginMember);
+            System.out.println("sfasf"+session.getAttribute("loginMember").toString());
+            System.out.println(session.getAttribute("loginMember"));
+            return "redirect:/";}
+        else {
             FieldError fieldError = new FieldError("memberForm", "address", "아이디가 일치하지 않거나 존재하지 않는 아이디 입니다.");
             bindingResult.addError(fieldError);
             return "MemberService/login";
         }
         /*현재 방식은, 해당하는 아이디가 없거나 잘못되었으면 fail을 나타내는 폼을 생성한 후 그곳으로 이동.
-        * 해당하는 멤버가 있어도 변화하는 것은 없음. 즉 로그인 성공하면 내 정보를 보는 등의 변화가 있었으면 좋겠음.
-        * */
+         * 해당하는 멤버가 있어도 변화하는 것은 없음. 즉 로그인 성공하면 내 정보를 보는 등의 변화가 있었으면 좋겠음.
+         * */
 
     }
 }
+

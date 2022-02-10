@@ -14,8 +14,9 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="#">Home</a>
                 </li>
+
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Login</a>
+                    <a th:if="${session.loginMember == null}" class="nav-link" href="#">Login</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Join</a>
@@ -36,7 +37,8 @@
         <button onclick="location.href='/board-free'">go to free board</button><br>
     </div>
     <div class="container">
-        <button onclick="location.href='/login'">login</button><br>
+        <a th:if="${session.loginMember != null}" href="/" th:text="'hello, '+${session.loginMember.name}+'님!'">hello</a>
+        <button th:if="${session.loginMember == null}" onclick="location.href='/login'">login</button><br>
         <button onclick="location.href='/join'">Let's join here</button>
         <button onclick="location.href='/members'">회원 목록</button><br>
     </div>
