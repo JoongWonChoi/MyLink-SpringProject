@@ -33,21 +33,29 @@ public class MemberController {
 
     /*===회원가입===*/
     @GetMapping("/join")
-    public String moveToJoin() {
+    public String moveToJoin(@ModelAttribute("memberForm")MemberForm memberForm) {
         return "MemberService/join";
     }
 
-    @PostMapping("join")
-    public String join(MemberForm form) {
+    @PostMapping("/join")
+    public String join(@ModelAttribute("memberForm") @Valid MemberForm memberForm, BindingResult bindingResult) {
         Member member = new Member();
-        member.createMember(form.getName(),
-                form.getAge(),
-                form.getSex(),
-                form.getDepartment(),
-                form.getAddress(),
-                form.getPassword());
-        memberService.join(member);
-        return "redirect:/";
+        member.createMember(memberForm.getName(),
+                memberForm.getAge(),
+                memberForm.getSex(),
+                memberForm.getDepartment(),
+                memberForm.getAddress(),
+                memberForm.getPassword());
+        Long join = memberService.join(member);
+        System.out.println(join);
+        if (join==-1L) {
+            FieldError fieldError = new FieldError("memberForm", "address", "이미 존재하는 아이디입니다.");
+            bindingResult.addError(fieldError);
+            return "redirect:/join";
+        }
+        else {
+            return "redirect:/";
+        }
     }
 
     /*===회원 목록 조회===*/

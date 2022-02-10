@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 
 /*실질적 클라이언트에게 제공하는 비즈니스 로직을 작성하도록 한다.
@@ -33,16 +32,24 @@ public class JPAMemberService implements MemberService {
     @Override
     @Transactional //클래스 단에 readOnly로 설정되어있지만, 쓰기 기능이 가능한 Transaction이 메서드에 있으면 우선권을 갖는다ㅓ.
     public Long join(Member member) { //member객체를 넘기고, 해당 객체를 1차캐시에 저장시킨 후 그 결과값을 반환받는다. ==> 트랜잭션?
-        validateDuplicateMember(member);
-        return memberRepository.save(member);//저장 로직이기 때문에 굳이 결과값을 반환받지 않아도 되지만, 혹시 몰라 저장된 member의 id를 반환받음
+        Member joinMember = validateDuplicateMember(member);
+        if (joinMember.equals(member)) {
+            return memberRepository.save(member);//저장 로직이기 때문에 굳이 결과값을 반환받지 않아도 되지만, 혹시 몰라 저장된 member의 id를 반환받음
+        }
+        else{
+            return -1L;
+        }
+
     }
 
-    private void validateDuplicateMember(Member member) {//
+    private Member validateDuplicateMember(Member member) {//
         List<Member> byAddress = memberRepository.findByAddress(member.getAddress());
         System.out.println(byAddress.toString());
         if (byAddress.size()!=0) { //아이디(address)로 검색한 Member테이블의 크기가 0 이 아님==> 해당 아이디를 쓰는 멤버 객체가 하나 이상존재한다는 의미
-            throw new IllegalStateException("already exists . .");
+//            throw new IllegalStateException("already exists . .");
+            return null;
         }
+        return member;
     }
 
     @Override
