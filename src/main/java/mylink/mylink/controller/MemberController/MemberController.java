@@ -48,7 +48,7 @@ public class MemberController {
                 memberForm.getPassword());
         Long join = memberService.join(member);
         System.out.println(join);
-        if (join==-1L) {
+        if (join==-1L) { //멤버 객체가 저장되면 id값이 최소 0부터 하나씩 증가하기 때문에, 중복 객체 판별 시 절대 나올 수 없는 음수를 넘겨받아 판별 
             FieldError fieldError = new FieldError("memberForm", "address", "이미 존재하는 아이디입니다.");
             bindingResult.addError(fieldError);
             return "MemberService/join";
