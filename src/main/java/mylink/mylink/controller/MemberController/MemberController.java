@@ -51,11 +51,9 @@ public class MemberController {
         if (join==-1L) {
             FieldError fieldError = new FieldError("memberForm", "address", "이미 존재하는 아이디입니다.");
             bindingResult.addError(fieldError);
-            return "redirect:/join";
+            return "MemberService/join";
         }
-        else {
-            return "redirect:/";
-        }
+        return "redirect:/";
     }
 
     /*===회원 목록 조회===*/
