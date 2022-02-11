@@ -38,6 +38,9 @@ public class JPAMemberService implements MemberService {
             return -1L;//저장 로직이기 때문에 굳이 결과값을 반환받지 않아도 되지만, 혹시 몰라 저장된 member의 id를 반환받음
         }
         return memberRepository.save(member);
+        /*새롭게 알게 된 점 : null은 equals() 연산 자체가 불가능하다 . .
+        CallByValue, 즉 할당된 값을 불러와 비교하기 때문에 null을 불러오는 것은 불가능함!
+        null은 == 연산자로 비교하자 . .*/
     }
 
     private Member validateDuplicateMember(Member member) {

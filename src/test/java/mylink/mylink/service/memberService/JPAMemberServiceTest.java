@@ -121,4 +121,26 @@ class JPAMemberServiceTest {
         assertThat(errorMember2).isEqualTo(null);
     }
 
+    @Test
+    void test() {
+        Member member = new Member();
+        member.setAddress("a");
+        Member member2 = new Member();
+        member2.setAddress("a");
+
+
+        Long join1 = memberService.join(member);
+        System.out.println("join1 = " + join1);
+        Long join = memberService.join(member2);
+        System.out.println("join2 = " + join);
+
+        String test = null;
+        System.out.println(test);
+        System.out.println(test==null);
+        System.out.println(test.equals(null));
+        /*null은 equals 비교 자체가 불가능하구나,..*/
+
+
+    }
+
 }
