@@ -81,7 +81,7 @@ public class MemberController {
     }
 
     @PostMapping("members/{id}/edit")
-    public String updateMember(@PathVariable("id") Long id, @ModelAttribute("form") MemberForm form) {
+    public String updateMember(@PathVariable("id") Long id, @ModelAttribute("form") MemberForm form, HttpServletRequest request) {
         /*MemberForm 은 웹 계층, controller에서의 사용 용도 클래스이기때문에, 서비스 로직으로 보내는 것은 좋지 않다고 생각
          * 그렇다고 새로운 Member 엔티티 객체를 생성하는 것은, 엔티티를 마구잡이로 외부에서 반환하고 사용하는 것은 엔티티 고유의 역할을 방해할 수
          * 있기 때문에 사용하지 않음. 엔티티 클래스는 순수하게 엔티티(DB의 테이블) 생성 기능에 충실해야한다고 생각함.
@@ -95,12 +95,21 @@ public class MemberController {
                 form.getDepartment(),
                 form.getAddress(),
                 form.getPassword());
+        //회원 수정을 하면 수정 사항이 세션에 반영되지 못함. DB에만 적용되는 것 뿐 세션에는 처음 저장한 회원 객체만 존재.
+        //따라서 새롭게 수정한 회원 객체를 세션에 등록해줘야함!
+        Member updatedMember = memberService.findMember(id);
+        HttpSession session = request.getSession(true);
+        session.setAttribute("loginMember",updatedMember);
         return "redirect:/members";
     }
 
     @GetMapping("members/{id}/delete")
-    public String deleteMember(@PathVariable("id") Long id) {
+    public String deleteMember(@PathVariable("id") Long id, HttpServletRequest request) {
         memberService.deleteMember(id);
+        //회원 객체가 삭제되면 로그인이 유지될 수 없음. 즉 세션이 끊겨야 한다고 생각
+        //로그아웃과 같은 원리라고 생각! 세션에 저장되어있던 login된 회원 객체를 삭제!
+        HttpSession session = request.getSession();
+        session.removeAttribute("loginMember");
         return "redirect:/members";
     }
 
@@ -159,6 +168,7 @@ public class MemberController {
         }
         /*현재 방식은, 해당하는 아이디가 없거나 잘못되었으면 fail을 나타내는 폼을 생성한 후 그곳으로 이동.
          * 해당하는 멤버가 있어도 변화하는 것은 없음. 즉 로그인 성공하면 내 정보를 보는 등의 변화가 있었으면 좋겠음.
+         * ==>HttpServletRequest의 session 사용!!
          * */
 
     }
@@ -166,9 +176,9 @@ public class MemberController {
     @GetMapping("/logout")
     public String logout(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        System.out.println("for logout   //  "+session.getAttribute("loginMember"));
         if(session!=null){
             session.removeAttribute("loginMember");
+            //session.invalidate();
         }
         return "redirect:/";
     }

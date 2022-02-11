@@ -2,7 +2,6 @@ package mylink.mylink.controller.MemberController;
 
 import mylink.mylink.domain.Member;
 import mylink.mylink.service.memberService.MemberService;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +10,7 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 
 @SpringBootTest
@@ -51,7 +49,7 @@ class MemberControllerTest {
         form.setAddress("address");
 
         //when
-        memberController.updateMember(1L, form);
+        //memberController.updateMember(1L, form);
 
         //then
         assertThat(memberService.findMember(1L).getName()).isEqualTo("test");
