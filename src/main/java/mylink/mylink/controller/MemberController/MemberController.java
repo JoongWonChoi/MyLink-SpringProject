@@ -161,6 +161,16 @@ public class MemberController {
             System.out.println(loginMember.getId());
             session.setAttribute("loginMember", loginMember);
             return "redirect:/";
+            /*클라이언트가 서버에 접근하여 로그인 판별을 하고, 성공하면 회원 객체를 "loginMember"라는 ID로 세션 저장소에 저장됨.
+            * ***그런데 만약 동시에 두 명 이상의 클라이언트가 접근하여 로그인 로직을 실행하면?***
+            * 현재 Test중에는 로그인 시도를 하려면, 반드시 현재 유지되는 세션을 지우고(logout or remove) 로그인을 진행하는
+            * 순차적 순서로 진행됨.
+            * 그러나 동시에 두명의 클라이언트, 두개 이상의 브라우저가 실행되어 동시에 로그인을 진행하면,
+            * 현재는 동일한 하나의 세션 저장소 ID("loginMember")에 저장되기 때문에 세션에 저장되는 각 회원 객체를 구분할 수 없음.
+            * ===해결 방법===
+            * 1. 각 회원 정보를 저장하는 세션 저장소마다 식별 가능한  고유 식별값이 필요할듯.
+            * 2.
+            * */
         } else {
             FieldError fieldError = new FieldError("memberForm", "address", "아이디가 일치하지 않거나 존재하지 않는 아이디 입니다.");
             bindingResult.addError(fieldError);
