@@ -155,11 +155,11 @@ public class MemberController {
             System.out.println("로그인 완료");
         }*/
         HttpSession session = request.getSession(true);
+
         Member loginMember = memberService.login(memberForm.getAddress(), memberForm.getPassword());
 
         if (loginMember != null) {
-            System.out.println(loginMember.getId());
-            session.setAttribute("loginMember", loginMember);
+            session.setAttribute("loginMember",loginMember);
             return "redirect:/";
             /*클라이언트가 서버에 접근하여 로그인 판별을 하고, 성공하면 회원 객체를 "loginMember"라는 ID로 세션 저장소에 저장됨.
             * ***그런데 만약 동시에 두 명 이상의 클라이언트가 접근하여 로그인 로직을 실행하면?***
