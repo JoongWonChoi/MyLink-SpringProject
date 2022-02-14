@@ -8,17 +8,19 @@ public interface BoardRepository {
     // ==== CRUD ====
 
     //for create
-    Board save(Board board); //Board자료형 return
+    Long save(Board board); //Board의 식별자 Id값 반환
+    //for read
+    Board findById(long id); //id로 게시물 찾기
+    List<Board> findAllBoards();
     //for delete
     void delete(Long index);
     //for update
-    void update(Board updatedBoard, Long index);
+    void update(Long id, String title, String body);
 
-    Optional<Board> findByTitle(String keyword);
+    Optional<List> findByTitle(String keyword);
     //게시판처럼 글
 
-    Board findById(long id); //id로 게시물 찾기
-    List<Board> findAllBoards();
+
 
     void clear();
 

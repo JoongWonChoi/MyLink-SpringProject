@@ -8,8 +8,8 @@
     <div class = "form-group">
         <table>
             <tbody>
-            <tr th:each="post : ${post}">
-                <td th:text="${post.index}"></td>
+            <tr th:each="member : ${session.loginMember}">
+                <td th:text="${post.id}"></td>
                 <td th:text="${post.title}"></td>
                 <td th:text="${post.name}"></td>
                 <td th:text="${post.age}"></td>

@@ -1,7 +1,6 @@
 package mylink.mylink.repository.boardRepository;
 
 import mylink.mylink.domain.Board;
-import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,17 +8,17 @@ import java.util.List;
 import java.util.Optional;
 
 
-@Repository
+//@Repository
 public class MemoryBoardRepository implements BoardRepository {
     HashMap<Long, Board> store = new HashMap<>();
     private static long index = 0L; // key값 생성
 
     @Override
     //게시물 정보 단순 저장
-    public Board save(Board board) {
+    public Long save(Board board) {
         /*board.setIndex(++index);*/
         store.put(index, board);
-        return board;
+        return board.getId();
     }
     //게시물 삭제
     @Override
@@ -29,7 +28,7 @@ public class MemoryBoardRepository implements BoardRepository {
     }
     //게시물 업데이트
     @Override
-    public void update(Board updatedBoard, Long index) { //넘어온 업데이트된 게시물로 덮어쓰기
+    public void update(Long index, String title, String body) { //넘어온 업데이트된 게시물로 덮어쓰기
         /*System.out.println("update in Repository  " + updatedBoard.getName());
         System.out.println("index = " + index);
 
@@ -47,12 +46,13 @@ public class MemoryBoardRepository implements BoardRepository {
     @Override
     //전달받은 keyword를 포함하는 title을 가진 게시물 반환
     //검색용!
-    public Optional<Board> findByTitle(String keyword) {
-        return store.values().stream().filter(board -> board.getTitle().equals(keyword)) //board의 getName이 파라미터로 넘어온 name과 같으면 반환
+    public Optional<List> findByTitle(String keyword) {
+       /* return store.values().stream().filter(board -> board.getTitle().equals(keyword)) //board의 getName이 파라미터로 넘어온 name과 같으면 반환
                 .findAny(); //Map의 get메서드의 인자는 key이어야함.
         // ==> key,value 설정 시 key는 중복되지 않는 primary key여야함.
         //     따라서 고유index를 설정하고, 이를 통해 검색하는 방식을 사용
-        //     하지만 title로 검색을 시도하려면 key값으로 String을 넣어 줬어야 함.
+        //     하지만 title로 검색을 시도하려면 key값으로 String을 넣어 줬어야 함.*/
+        return null;
     }
 
 

@@ -34,7 +34,7 @@ public class Member {
     private String password;
 
     //Order 엔티티와 연관관계 매핑
-    @OneToMany(mappedBy = "member") //Order 클래스의 Member타입을 참조하는 'member' 필드에 의해 참조됨
+    @OneToMany(mappedBy = "member") //Board 클래스의 Member타입을 참조하는 'member' 필드에 의해 참조됨
     private List<Board> boards = new ArrayList<>();
 
     //=====비즈니스 로직=====//

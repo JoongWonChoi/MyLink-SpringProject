@@ -7,33 +7,16 @@
 <div class="container">
     <form action="/board-link/write" method="post">
         <div class="form-group">
-            <div>
             <label form="name">이름</label>
-                <input type="text" id="name" name="name" placeholder="이름을 입력하세요">
-            </div>
-            <div>
-            <label form="age">나이</label>
-                <input type="text" id="age" name="age" placeholder="나이를 입력하세요">
-            </div>
-            <div>
-            <label form="sex">성별</label>
-                <input type="radio"  value="male" name="sex">남성
-                <input type="radio"  value="female" name="sex">여성
-                <input type="radio"  value="mixed" name="sex">중성
-            </div>
-            <div>
+                <div class = "form-control" th:text="${session.loginMember.name}+'('+${session.loginMember.address}+')'"/>
             <label form="department">전공</label>
-                <input type="text" id="department" name="department" placeholder="전공을 입력하세요"></div>
-            <div>
+                <div class = "form-control" th:text="${session.loginMember.department}"/>
             <label form="title">제목</label>
-                <input type="text" id="title" name="title" placeholder="제목">
-            </div>
-            <div>
+                <textarea rows="1" cols="55" class = "form-control" id="title" name="title" placeholder="제목"></textarea>
             <label form="body">내용</label>
-                <input type="text" id="body" name="body" placeholder="링크를 넣어주세요">
-            </div>
+                <textarea class = "form-control" id="body" name="body" placeholder="링크를 넣어주세요"/></textarea>
         </div>
-        <button type="submit" onclick="alert('complete!')">등록</button>
+        <button class="btn btn-primary "type="submit" onclick="alert('작성 완료')">등록</button>
     </form>
 </div>
 

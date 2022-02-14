@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,19 +26,25 @@ class JPAMemberServiceTest {
 
 
     @Test
+    @Rollback(value = false)
     void
     join() {
         //given
         Member member = new Member();
-        member.setName("a");
-        member.setAddress("address");
+        member.createMember("A",1,"male","sw","id","pw");
+
+        Member member2 = new Member();
+        member2.createMember("A",1,"male","sw","id2","pw");
+        /*member.setName("a");
+        member.setAddress("address");*/
 
         //when
         memberService.join(member);
+        memberService.join(member2);
 
         //then
-        assertThat(memberService.findMember(1L).getName()).isEqualTo("a");
-        assertThat(memberService.findMember(1L).getAddress()).isEqualTo("address");
+        /*assertThat(memberService.findMember(1L).getName()).isEqualTo("a");
+        assertThat(memberService.findMember(1L).getAddress()).isEqualTo("address");*/
     }
 
     @Test

@@ -4,12 +4,11 @@ import lombok.RequiredArgsConstructor;
 import mylink.mylink.domain.Board;
 import mylink.mylink.repository.boardRepository.BoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 
-@Service
+//@Service
 @RequiredArgsConstructor
 public class BoardServiceImpl implements BoardService {
 
@@ -31,16 +30,17 @@ public class BoardServiceImpl implements BoardService {
 
 
     //게시물
-    public void createPost(Board board) {
+    public Long createPost(Board board) {
         //중복되는 title 있는지 검증 ==> 제목을 통한 검색을 위해.
         validateDuplicateTitle(board);
         boardRepository.save(board);
+        return board.getId();
     }
 
     @Override
-    public void updatePost(Board board, Long index) {
+    public void updatePost(Long id, String title, String body) {
 
-        boardRepository.update(board, index);
+        /*boardRepository.update(board, index);*/
     }
 
     @Override

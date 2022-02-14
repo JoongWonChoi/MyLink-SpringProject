@@ -5,13 +5,16 @@ import mylink.mylink.domain.Board;
 import java.util.List;
 
 public interface BoardService {
-
-    void createPost(Board board);
-
-    void updatePost(Board board, Long index);
-    void deletePost(Long index);
+    //Create
+    Long createPost(Board board);
+    //Read
+    Board viewPost(Long id);
     List<Board> viewAllPosts();
-    Board viewPost(Long index);
+    //Update
+    void updatePost(Long id, String title, String body);
+    //Delete
+    void deletePost(Long index);
+
 
 
 

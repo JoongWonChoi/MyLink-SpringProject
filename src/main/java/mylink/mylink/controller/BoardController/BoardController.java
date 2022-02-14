@@ -1,6 +1,7 @@
 package mylink.mylink.controller.BoardController;
 
 import lombok.RequiredArgsConstructor;
+import mylink.mylink.domain.Member;
 import mylink.mylink.service.boardService.BoardService;
 import mylink.mylink.domain.Board;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -55,7 +58,8 @@ public class BoardController {
         return "redirect:/board-link";
     }*/
     @PostMapping("/board-link/write")
-    public String createLinkBoard(Board board){
+    public String createLinkBoard(Board board, HttpSession session){
+        Object loginMember = session.getAttribute("loginMember"); //"loginMember"라는 이름으로 세션 저장소에 저장된 회원 객체 불러오기
         boardService.createPost(board);
         return "redirect:/board-link";
     }
@@ -100,7 +104,8 @@ public class BoardController {
     //@ModelAttribute
     public String updatePost(@PathVariable("id") Long id, @ModelAttribute Board board) {
 
-        boardService.updatePost(board, id);
+        //boardService.updatePost(board, id);
+
         return "redirect:/board-link";
     }
 
