@@ -1,0 +1,64 @@
+보드 개선
+1.repo / service / controller
+2.기능
+-CRUD -> session 활용
+게시물 작성 폼 들어가면 세션에 저장 되어있는 회원 정보들 읽어올 수 있게끔
+--id / 회원(이름/아이디/학과 정도?) / 제목 / 내용 / 작성시간
+
+==Service==
+-createPost
+-readPost
+-updatePost
+-deletePost
+-viewAllPosts
+
+==Repo==
+-save
+-findPost
+-findAllPost
+-update
+-remove
+
+
+member와 board는 현재 연관가ㅗㄴ계 매핑 되어있는 상황.
+member join 하고 그 멤버로 post 생성하려 하면,
+갑자기 저장된 post 식별값이 2가 됨..
+
+로그인
+1. 게시물 작성 폼에 session.loginMember.정보들 로 회원 정보 확인 및 표시
+2. 작성 폼에 제목 내용 적고, memberId, title, post 를 controller로 넘김
+--어차피 클라이언트와 세션 유지중이니, 세션에 있는 member 객체를 불러와도 되지않나? 또 find하려면 DB 접근해야하니 리소스 낭비가..session.getAttribute();
+
+3. post로 받는메서드에서는 (memberId,) title, post를 받음
+4. member객체, title, post 를 통해 컨트롤러에서 board.createPost()를 진행,저장할 board 객체를 생성함
+5. 생성된 board객체를 service -> repository로 넘겨DB에 저장.
+
+board의 아이디가왜 2로 넘어가지??
+
+board 테이블 id는 0부터 ++1씩 순차적으로 넘어가는 것이 아니라, member테이블의 id에 의해 결정되는 듯 보임.
+멤버생성(1) -> 게시물 생성(2) -> 멤버 생성(3) -> 게시물 생성(4)
+멤버생성(1) -> 멤버 생성(2)  ->게시물 생성(3)  -> 게시물 생성(4)
+
+나는 멤버는 게시물이든 각각 테이블에 맞게 생성한 순서로 1, 2, 3 이렇게 된다고 생각했음..
+그래도 식별자가 겹칠 일은 없으니 상관 x??
+
+그런데 Member 도메인에서  하나의 회원 객체에 대해 생성된 board값을 넣어줘야하는거 아닐까?
+
+Board 테이블에 member_id로 외래키를 걸어놓았기 때문에, Member테이블에는 
+board에 대한 정보가 없어도 된다. join하면 됨
+
+회원id로기능구현할때에도 보통 회원 객체를 받아와서 id를 참조하기때문에 상관 없을 것이라고 생각함
+
+
+1. 게시물 작성 폼에서 controller로 회원 객체 넘기는 방법
+2. 컨트롤러 전면 수정
+3. restful하게 url 개발
+
+4. 게시물 list, 작성 폼
+번호 / 제목 / 글쓴이 / 시간
+
+
+
+
+
+

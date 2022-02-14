@@ -1,0 +1,69 @@
+crud 완료.
+==board==
+1. (굳이x)
+2. 게시물 번호 (삭제시)(굳이x)
+3. 
+
+==member==
+-회원가입
+1. 회원 정보 생성 및 저장소에 저장 (by what?) id? 
+--> **key : addresss // value : index, name, age, sex, password
+3. 이름 나이 성별 학과 ID PW 
+4. ID는 중복 x
+5. 비밀번호 조건 ==> 영어소문자 + 숫자
+-로그인
+1. id나 pw가 다르면 불가
+2. 로그인 성공하면 화면 전환!
+
+Controller -> Service -> Repository
+                   join(+check duplicate)	  save
+                   login 
+	         logout        
+
+
+MemberRepo 
+-save (저장) / void 
+-checkDuplicate(중복 확인) / 
+-findById(고유번호로 회원(객체) 찾기) / return ==> service
+-findAll(모든 회원 찾기) / return 
+-login(전달받은 address+password가 hash에 저장된 정보와 같으면 True / 아니면 False) / return
+-logout / ?
+
+Service
+회원 가입(등록 // +address로 중복검사)
+회원 조회
+회원 수정
+회원 탈퇴(삭제)
+로그인
+로그아웃
+
+jpa 
+orm 
+tdd
+영속성  context
+entity
+1차 cache
+
+
+현재 된 것 : 스프링을 사용하여 기본적인 게시물 CRUD 구현 한 것
+모르는 것 : 
+-외부 db와 연동
+-회원 로직 등 에서 로그인 하면 변화 생기게끔 하는것 : 세션? 쿠키?
+-큰 틀에서의 설계
+-jpa, orm, tdd, dao 등의 개념
+-java 자료구조 (람다, 맵, 리스트, 스트림 ..)
+-Configuration과 AutoConfiguration
+-테스트케이스 시 한 클래스 내에서 특정 테스트가 왜 다른 테스트케이스에 영향을 받는지
+
+1-4 jpa와 DB연동
+yml파일, 영속성 컨텍스트, 1차캐시, Extendswith, @springboottest, 
+jwcshop/build/lib/'jar파일생성됨'
+--> 배포할 때 이 파일로 진행. idea가 아닌 콘솔로 직접 실행!
+
+
+
+
+
+
+
+
