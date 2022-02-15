@@ -8,7 +8,6 @@ import mylink.mylink.domain.Member;
 @Setter
 public class BoardForm {
     private Member member;
-    private String department;
     private String title;
     private String body;
 

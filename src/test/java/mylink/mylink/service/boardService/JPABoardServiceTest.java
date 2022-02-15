@@ -13,7 +13,6 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @SpringBootTest
@@ -38,7 +37,7 @@ class JPABoardServiceTest {
 
         //when
         Board board = new Board();
-        board.createPost(memberService.findMember(1L), "title","body", LocalDateTime.now());
+        board.createPost(memberService.findMember(1L), "title","body");
         Long post = boardService.createPost(board);
         System.out.println("post = " + post);
 
@@ -47,7 +46,7 @@ class JPABoardServiceTest {
         memberService.join(member2);
 
         Board board2 = new Board();
-        board2.createPost(memberService.findMember(3L), "title2","body2", LocalDateTime.now());
+        board2.createPost(memberService.findMember(3L), "title2","body2");
         Long post2 = boardService.createPost(board2);
         System.out.println("post2 = " + post2);
 
@@ -74,7 +73,7 @@ class JPABoardServiceTest {
 
         //when
         Board board = new Board();
-        board.createPost(memberService.findMember(1L), "title","body", LocalDateTime.now());
+        board.createPost(memberService.findMember(1L), "title","body");
         Long post = boardService.createPost(board);
 
         Member member2 = new Member();
@@ -82,7 +81,7 @@ class JPABoardServiceTest {
         memberService.join(member2);
 
         Board board2 = new Board();
-        board2.createPost(memberService.findMember(2L), "title2","body2", LocalDateTime.now());
+        board2.createPost(memberService.findMember(2L), "title2","body2");
         Long post2 = boardService.createPost(board2);
 
         //then

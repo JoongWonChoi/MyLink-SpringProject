@@ -1,31 +1,36 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
-<head th:replace="fragments/header :: header" />
+<head th:replace="fragments/header :: header" >
+
+</head>
+
 
 <div th:replace="fragments/bodyHeader :: bodyHeader"/>
 <div class="container"><h3>MyLink</h3></div>
-<div class = "container">
-    <div class = "form-group">
-        <table>
-            <tbody>
-            <tr th:each="member : ${session.loginMember}">
-                <td th:text="${post.id}"></td>
-                <td th:text="${post.title}"></td>
-                <td th:text="${post.name}"></td>
-                <td th:text="${post.age}"></td>
-                <td th:text="${post.sex}"></td>
-                <td th:text="${post.department}"></td>
-                <td><a th:href="${post.body}" th:text="${post.body}"></a></td>
 
-                <button type="submit" formmethod="get" th:onclick="'location.href=\''+ @{/board-link/{id}/update(id=${post.index})} + '\''">Update</button>
-
-                <form method="post" th:href="@{/board-link/post/{id}(id=${post.index})}">
-                    <button type="submit" onclick="alert('delete complete!')">Delete</button>
-                </form>
+        <table class="view_table" align="center" th:each="post : ${post}">
+            <!-- Title -->
+            <tr>
+                <td colspan="4" class="view_title" th:text="${post.title}"></td>
             </tr>
-
-            </tbody>
+            <!-- Info -->
+            <tr>
+                <td  class="view_id">작성자</td>
+                <td  class="view_id2" th:text="${post.member.name}+'('+${post.member.address}+')'"></td>
+                <td  class="view_id">전공</td>
+                <td  class="view_id2" th:text="${post.member.department}"></td>
+            </tr>
+            <!-- Contents -->
+            <tr>
+                <td colspan="4" class="view_content"><a th:href="${post.body}" th:text="${post.body}"></a></td>
+            </tr>
+            <!-- Edit / Delete -->
         </table>
-    </div>
-</div>
+        <div th:each="post : ${post}" align="center">
+            <a href="#" th:href="@{/board-link/{id}/edit (id=${post.id})}"
+               class="btn btn-primary" role="button">수정</a>
+            <a href="#" th:href="@{/board-link/{id}/delete (id=${post.id})}"
+               class="btn btn-primary" role="button">삭제</a>
+        </div>
+
 </html>

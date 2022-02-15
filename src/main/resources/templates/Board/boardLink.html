@@ -13,25 +13,23 @@
                 <th>#</th>
                 <th>제목</th>
                 <th>이름</th>
-                <th>나이</th>
-                <th>성별</th>
                 <th>전공</th>
+                <th>작성시간</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="board : ${boards}">
-                <td th:text="${board.index}"></td>
+                <td th:text="${board.id}"></td>
                 <td><a th:href="@{/board-link/{id}(id=${board.id})}" th:text="${board.title}"></a></td>
-                <td th:text="${board.name}"></td>
-                <td th:text="${board.age}"></td>
-                <td th:text="${board.sex}"></td>
-                <td th:text="${board.department}"></td>
+                <td th:text="${board.member.name}"></td>
+                <td th:text="${board.member.department}"></td>
+                <td th:text="${board.uploadTime}"></td>
             </tr>
             </tbody>
         </table>
     </div>
 </div>
-<button class = "btn btn-primary" onclick="location.href='/board-link/write'">write</button>
+<button class = "btn btn-primary" onclick="location.href='/board-link/new'">글쓰기</button>
 
 
 </body>

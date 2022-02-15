@@ -2,6 +2,7 @@ package mylink.mylink.controller.BoardController;
 
 import lombok.RequiredArgsConstructor;
 import mylink.mylink.domain.Board;
+import mylink.mylink.domain.Member;
 import mylink.mylink.service.boardService.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -57,11 +58,19 @@ public class BoardController {
         return "redirect:/board-link";
     }*/
     @PostMapping("/board-link/new")
-    public String createLinkBoard(Board board, HttpSession session){
-        Object loginMember = session.getAttribute("loginMember"); //"loginMember"라는 이름으로 세션 저장소에 저장된 회원 객체 불러오기
+    public String createLinkBoard(BoardForm boardForm, HttpSession session){
+        Board board = new Board();
+        /*글쓰기는 로그인 세션 유지 중에만 작성 가능.
+        * 따라서 게시물 작성 시 필요한 회원 정보는 view폼과 controller에서 각각 세션을 호출하여 회원 객체 사용
+        * 즉, view의 폼에서 넘어오는 member객체를 controller에서 사용하는 것이 아님!
+        * session.getAttribute()의 타입은 Object이므로 내가 필요한 Member타입으로 캐스팅 해줌*/
+        Member loginMember = (Member)session.getAttribute("loginMember"); //"loginMember"라는 이름으로 세션 저장소에 저장된 회원 객체 불러오기
+        board.createPost(loginMember,boardForm.getTitle(),boardForm.getBody());
+
         boardService.createPost(board);
         return "redirect:/board-link";
     }
+
     @GetMapping("/board-free/new")
     public String writeFreeBoard(){
         return "Board/writeFree";
@@ -93,13 +102,13 @@ public class BoardController {
     }
 
     //====================Update========================
-    @GetMapping("/board-link/{id}/update")
+    @GetMapping("/board-link/{id}/edit")
     public String getPostForUpdate(@PathVariable("id")Long id, Model model) {
         Board post = boardService.viewPost(id);
         model.addAttribute("post",post);
         return "Board/updateBoard";
     }
-    @PostMapping("/board-link/{id}/update")
+    @PostMapping("/board-link/{id}/edit")
     //@ModelAttribute
     public String updatePost(@PathVariable("id") Long id, @ModelAttribute Board board) {
 

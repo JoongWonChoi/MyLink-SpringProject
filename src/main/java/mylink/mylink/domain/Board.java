@@ -39,11 +39,11 @@ public class Board {
     //Service(서비스 관련 로직 제공)와 Repository(DB 및 영속성 컨텍스트 접근 기능) 또한 각자의 분할된 임무가 있기때문에 침해하지 않고자 그런걸까?
     //그렇다면 도메인에 직접 핵심 로직을 설정하여도 문제 될 것이 없을까??
     /* ********************************************************** */
-    public void createPost(Member member, String title, String body, LocalDateTime uploadTime) {
+    public void createPost(Member member, String title, String body) {
         this.member = member;
         this.title = title;
         this.body = body;
-        this.uploadTime = uploadTime;
+        this.uploadTime = LocalDateTime.now();
     }
 
     //===게시물 update===
