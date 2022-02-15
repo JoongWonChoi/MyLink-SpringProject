@@ -5,7 +5,7 @@
 <div th:replace="fragments/bodyHeader :: bodyHeader"/>
 
 <div class="container">
-    <form action="/board-link/write" method="post">
+    <form action="/board-link/new" method="post">
         <div class="form-group">
             <label form="name">이름</label>
                 <div class = "form-control" th:text="${session.loginMember.name}+'('+${session.loginMember.address}+')'"/>

@@ -1,9 +1,8 @@
 package mylink.mylink.controller.BoardController;
 
 import lombok.RequiredArgsConstructor;
-import mylink.mylink.domain.Member;
-import mylink.mylink.service.boardService.BoardService;
 import mylink.mylink.domain.Board;
+import mylink.mylink.service.boardService.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,7 +38,7 @@ public class BoardController {
 
     //====================Create========================
     //GET ==> move to there
-    @GetMapping("/board-link/write")
+    @GetMapping("/board-link/new")
     public String writeLinkBoard(){
         return "Board/writeLink";
     }
@@ -57,25 +56,25 @@ public class BoardController {
         boardService.createPost(board);
         return "redirect:/board-link";
     }*/
-    @PostMapping("/board-link/write")
+    @PostMapping("/board-link/new")
     public String createLinkBoard(Board board, HttpSession session){
         Object loginMember = session.getAttribute("loginMember"); //"loginMember"라는 이름으로 세션 저장소에 저장된 회원 객체 불러오기
         boardService.createPost(board);
         return "redirect:/board-link";
     }
-    @GetMapping("/board-free/write")
+    @GetMapping("/board-free/new")
     public String writeFreeBoard(){
         return "Board/writeFree";
     }
 
-    @PostMapping("/board-free/write")
+    @PostMapping("/board-free/new")
     public String createFreeBoard(Board board){
         return "redirect:/";
     }
 
     //====================Read========================
     //특정 게시물의 index를 받는 controller
-    @GetMapping("/board-link/post/{id}")
+    @GetMapping("/board-link/{id}")
     //Get 방식의 query string 방식 : .../post?id=1 과 같은 방식
     //Get 방식의 path value 방식 : .../post/1 과 같이 값을 경로에 넣는 방식
     //나는 post 상세보기 로직에서 파라미터 매핑을 path value방식으로 하고싶었기 때문에 PathVariable 어노테이션을 사용하였다.
@@ -87,20 +86,20 @@ public class BoardController {
     }
 
     //====================Delete========================
-    @PostMapping("/board-link/post/{id}")
+    @PostMapping("/board-link/{id}")
     public String deletePost(@PathVariable("id") Long id){
         boardService.deletePost(id);
         return "redirect:/board-link";
     }
 
     //====================Update========================
-    @GetMapping("/board-link/post/update/{id}")
+    @GetMapping("/board-link/{id}/update")
     public String getPostForUpdate(@PathVariable("id")Long id, Model model) {
         Board post = boardService.viewPost(id);
         model.addAttribute("post",post);
         return "Board/updateBoard";
     }
-    @PostMapping("/board-link/post/update/{id}")
+    @PostMapping("/board-link/{id}/update")
     //@ModelAttribute
     public String updatePost(@PathVariable("id") Long id, @ModelAttribute Board board) {
 

@@ -21,7 +21,7 @@
             <tbody>
             <tr th:each="board : ${boards}">
                 <td th:text="${board.index}"></td>
-                <td><a th:href="@{/board-link/post/{id}(id=${board.id})}" th:text="${board.title}"></a></td>
+                <td><a th:href="@{/board-link/{id}(id=${board.id})}" th:text="${board.title}"></a></td>
                 <td th:text="${board.name}"></td>
                 <td th:text="${board.age}"></td>
                 <td th:text="${board.sex}"></td>

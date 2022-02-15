@@ -17,7 +17,7 @@
                 <td th:text="${post.department}"></td>
                 <td><a th:href="${post.body}" th:text="${post.body}"></a></td>
 
-                <button type="submit" formmethod="get" th:onclick="'location.href=\''+ @{/board-link/post/update/{id}(id=${post.index})} + '\''">Update</button>
+                <button type="submit" formmethod="get" th:onclick="'location.href=\''+ @{/board-link/{id}/update(id=${post.index})} + '\''">Update</button>
 
                 <form method="post" th:href="@{/board-link/post/{id}(id=${post.index})}">
                     <button type="submit" onclick="alert('delete complete!')">Delete</button>
