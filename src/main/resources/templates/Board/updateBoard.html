@@ -1,49 +1,27 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
-<head th:replace="fragments/header :: header" />
-<body>
-<div th:replace="fragments/bodyHeader :: bodyHeader"/>
-<div class="container">
-    <tr th:each="post : ${post}">
-        <form method="post" th:href="@{/board-link/{id}/update(id=${post.index})}">
-        <div class="form-group">
-            <div>
-                <label form="name">이름</label>
-                <input type="text" id="name" name="name" th:value="${post.name}">
-            </div>
-            <div>
-                <label form="age">나이</label>
-                <input type="text" id="age" name="age" th:value="${post.age}">
-            </div>
-            <div>
-                <label form="sex">성별</label>
-                <input type="radio"  value="male" name="sex">남성
-                <input type="radio"  value="female" name="sex">여성
-                <input type="radio"  value="mixed" name="sex">중성
-            </div>
-            <div>
-                <label form="department">전공</label>
-                <input type="text" id="department" name="department" th:value="${post.department}">
-            </div>
-            <div>
-                <label form="title">제목</label>
-                <input type="text" id="title" name="title" th:value="${post.title}">
-            </div>
-            <div>
-                <label form="body">내용</label>
-                <input type="text" id="body" name="body" th:value="${post.body}">
+    <head th:replace="fragments/header :: header" />
+    <body>
+        <div th:replace="fragments/bodyHeader :: bodyHeader"/>
+            <div class="container">
+                <form method="post" th:href="@{/board-link/{id}/edit(id=${post.id})}">
+                    <div class="form-group" th:each="post : ${post}">
+                        <label form="id">#</label>
+                            <div class="form-control" th:text="${post.id}"></div>
+                        <label form="name">이름</label>
+                            <div class="form-control" th:text="${post.member.name}+'('+${post.member.address}+')'"></div>
+                        <label form="department">전공</label>
+                            <div class="form-control" th:text="${post.member.department}"></div>
+                        <label form="title">제목</label>
+                            <textarea rows="1" cols="55" class = "form-control" id="title" name="title" th:value="${post.title}"></textarea>
+                        <label form="body">내용</label>
+                            <textarea rows="3" cols="55" class = "form-control" id="body" name="body" th:value="${post.body}"></textarea>
+                    </div>
+                    <div class="view_btn">
+                        <button class="btn btn-primary" type="submit" onclick="alert('수정완료')">수정</button>
+                    </div>
+                </form>
             </div>
         </div>
-
-            <button type="submit" onclick="alert('complete!')">등록</button>
-        </form>
-
-    </tr>
-</div>
-
-</div>
-
-
-
-</body>
+    </body>
 </html>

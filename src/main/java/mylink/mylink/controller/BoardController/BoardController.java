@@ -57,6 +57,19 @@ public class BoardController {
         boardService.createPost(board);
         return "redirect:/board-link";
     }*/
+    /* <===로그인 된(in session) 회원 객체로 글쓰기===>
+    *  1. 세션에 회원 객체 저장 -> 세션에 저장된 객체 view 폼에 옮겨담기 -> 게시물 작성 시 사용 -> 작성된 폼에서 회원 객체 post로 바인딩 해오기
+    *  ==>만약 세션이 죽어도, 폼에는 세션에 있던 정보 존재.
+    *  하지만 만약 세션이 없는 상태에서 폼을 쓰는 경우가 있다면 정보가 노출될 수 있음.
+    *
+    *  2. 세션에 회원 객체 저장 -> 폼에서는 세션에 저장된 회원 객체 사용 -> post메서드에서도 세션에 저장된 회원 객체 사용
+    *  ==>만약 글 작성 과정에서 세션 죽는다면
+    *  로그인 유지는 현재 세션 기준으로 기능하기때문에, 글쓰기도 세션 기준으로 적용됨.
+    *  또한 하나의 클라이언트-서버 관계에서는 하나의 세션만 생성되므로, 문제될 것이 없다고 생각.
+    *
+    *   **따라서 2번 방식 사용 결졍**
+    *  하지만 동시 접속자 혹은 사용자가 많아진다면?
+    * */
     @PostMapping("/board-link/new")
     public String createLinkBoard(BoardForm boardForm, HttpSession session){
         Board board = new Board();
@@ -95,7 +108,9 @@ public class BoardController {
     }
 
     //====================Delete========================
-    @PostMapping("/board-link/{id}")
+    //Get으로 URL 받아 기능 처리하여도 상관 없나?
+    //일단 기능적으로는 성공!
+    @GetMapping("/board-link/{id}/delete")
     public String deletePost(@PathVariable("id") Long id){
         boardService.deletePost(id);
         return "redirect:/board-link";
@@ -105,17 +120,19 @@ public class BoardController {
     @GetMapping("/board-link/{id}/edit")
     public String getPostForUpdate(@PathVariable("id")Long id, Model model) {
         Board post = boardService.viewPost(id);
-        model.addAttribute("post",post);
+        //DB로부터 직접 넘어온 board 객체는 민감한 정보가 있을 수 있으므로 수정에 필요한 정보만을 웹 계층의 BoardForm에 옮겨 담아 폼에 전송
+        BoardForm boardForm = new BoardForm();
+        boardForm.setBoardForm(post.getId(), post.getMember(), post.getTitle(), post.getBody());
+        model.addAttribute("post", boardForm);
         return "Board/updateBoard";
     }
     @PostMapping("/board-link/{id}/edit")
     //@ModelAttribute
-    public String updatePost(@PathVariable("id") Long id, @ModelAttribute Board board) {
-
-        //boardService.updatePost(board, id);
-
+    public String updatePost(@PathVariable("id") Long id, @ModelAttribute BoardForm boardForm) {
+        boardService.updatePost(boardForm.getId(), boardForm.getTitle(), boardForm.getBody());
         return "redirect:/board-link";
     }
+
 
 
 }

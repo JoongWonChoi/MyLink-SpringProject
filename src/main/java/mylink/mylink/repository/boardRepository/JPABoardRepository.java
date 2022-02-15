@@ -36,7 +36,8 @@ public class JPABoardRepository implements BoardRepository {
     /*Fore delete*/
     @Override
     public void delete(Long index) {
-        em.find(Board.class, index);
+        Board board = em.find(Board.class, index);
+        em.remove(board);
     }
 
 
