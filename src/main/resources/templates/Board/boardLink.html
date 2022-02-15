@@ -30,7 +30,8 @@
     </div>
 </div>
 <div class = "view_btn">
-    <button class = "btn btn-primary" onclick="location.href='/board-link/new'">글쓰기</button>
+    <button class = "btn btn-primary" th:if="${session.loginMember == null}" onclick="location.href='/login'">글쓰기</button>
+    <button class = "btn btn-primary" th:if="${session.loginMember != null}" onclick="location.href='/board-link/new'">글쓰기</button>
 </div>
 
 </body>
