@@ -1,9 +1,9 @@
 package mylink.mylink.service.memberService;
 
+import mylink.mylink.domain.Board;
 import mylink.mylink.domain.Member;
 
 import java.util.List;
-import java.util.Optional;
 
 
 public interface MemberService {
@@ -30,5 +30,7 @@ public interface MemberService {
 
     //회원 목록 조회
     List<Member> findMembers();
+
+    List<Board> viewMemberBoards(Long id);
 
 }

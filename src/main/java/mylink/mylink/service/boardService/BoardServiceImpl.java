@@ -48,6 +48,11 @@ public class BoardServiceImpl implements BoardService {
         boardRepository.delete(index);
     }
 
+    @Override
+    public List<Board> viewOnesPosts(Long id) {
+        return null;
+    }
+
 
     private void validateDuplicateTitle(Board board) {
         boardRepository.findByTitle(board.getTitle()).ifPresent(m -> {

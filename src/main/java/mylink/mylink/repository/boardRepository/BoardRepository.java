@@ -20,6 +20,8 @@ public interface BoardRepository {
     Optional<List> findByTitle(String keyword);
     //게시판처럼 글
 
+    List<Board> findOnesPosts(Long id);
+
 
 
     void clear();

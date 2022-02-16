@@ -2,6 +2,7 @@ package mylink.mylink.controller.MemberController;
 
 
 import lombok.RequiredArgsConstructor;
+import mylink.mylink.domain.Board;
 import mylink.mylink.domain.Member;
 import mylink.mylink.service.memberService.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -203,6 +204,13 @@ public class MemberController {
             //session.invalidate();
         }
         return "redirect:/";
+    }
+
+    @GetMapping("members/{id}/boards")
+    public String memberBoards(@PathVariable("id") Long id, Model model) {
+        List<Board> memberBoards = memberService.viewMemberBoards(id);
+        model.addAttribute("memberBoards", memberBoards);
+        return "MemberService/memberBoards";
     }
 }
 

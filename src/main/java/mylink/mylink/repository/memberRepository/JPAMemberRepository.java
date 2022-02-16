@@ -2,6 +2,7 @@ package mylink.mylink.repository.memberRepository;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import mylink.mylink.domain.Board;
 import mylink.mylink.domain.Member;
 import org.springframework.stereotype.Repository;
 
@@ -77,6 +78,14 @@ public class JPAMemberRepository implements MemberRepository{
             return validMember;
         }
     }
+
+    @Override
+    public List<Board> findMemberBoards(Long id) {
+        return em.createQuery("select m.boards from Member m where m.id =: id")
+                .setParameter("id", id)
+                .getResultList();
+    }
+
     @Override
     public List<Member> findAll() {
         return em.createQuery("select m from Member m", Member.class).getResultList(); //Member 엔티티 조회 타입으로 조회, 리스트 형태로 반환

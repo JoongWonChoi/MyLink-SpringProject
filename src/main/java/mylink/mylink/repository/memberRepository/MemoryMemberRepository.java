@@ -1,5 +1,6 @@
 package mylink.mylink.repository.memberRepository;
 
+import mylink.mylink.domain.Board;
 import mylink.mylink.domain.Member;
 
 import java.util.ArrayList;
@@ -51,6 +52,11 @@ public class MemoryMemberRepository implements MemberRepository{
 
     @Override
     public Member login(String address, String password) {
+        return null;
+    }
+
+    @Override
+    public List<Board> findMemberBoards(Long id) {
         return null;
     }
 }

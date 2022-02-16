@@ -61,6 +61,13 @@ public class JPABoardRepository implements BoardRepository {
     }
 
     @Override
+    public List<Board> findOnesPosts(Long id) {
+        return em.createQuery("select m.boards from Member m where m.id =:id")
+                .setParameter("id", id)
+                .getResultList();
+    }
+
+    @Override
     public void clear() {
 
     }

@@ -5,7 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Entity
 @Getter
@@ -24,8 +25,13 @@ public class Board {
 
     private String body;
 
-    private LocalDateTime uploadTime;
+    private String uploadTime;
 
+    /*연관관계 매핑*/
+    public void addBoardInMember(Member member) { //연관관계 메서드
+        this.member = member;
+        member.getBoards().add(this);
+    }
     /*비즈니스 로직*/
     //===게시물 생성===
     //도메인에 생성 로직을 작성하는 이유 :: 웹 계층 단인 Controller에 BoardForm을 생성시켜 놓고, 폼으로부터 넘어오는 값은 BoardForm에 저장되도록 한다.
@@ -43,7 +49,11 @@ public class Board {
         this.member = member;
         this.title = title;
         this.body = body;
-        this.uploadTime = LocalDateTime.now();
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); //MM:달 mm:분, HH:24시간 기준 hh:12시간 기준
+        Date dateTime = new Date();
+        String time= sdf.format(dateTime);
+        this.uploadTime = time;
     }
 
     //===게시물 update===
@@ -51,8 +61,11 @@ public class Board {
     public void updatePost(String title, String body) {
         this.title = title;
         this.body = body;
-        //LocalDateTime updateTime = LocalDateTime.now();
-        this.uploadTime = LocalDateTime.now();
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date dateTime = new Date();
+        String updateTime= sdf.format(dateTime);
+        this.uploadTime = updateTime;
     }
 
 

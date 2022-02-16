@@ -1,5 +1,6 @@
 package mylink.mylink.repository.memberRepository;
 
+import mylink.mylink.domain.Board;
 import mylink.mylink.domain.Member;
 
 import java.util.List;
@@ -29,7 +30,7 @@ public interface MemberRepository {
     //Optional 반환 or 그냥 Member 자료형 반환?
     Member login(String address, String password);
 
-    //로그아웃
+    List<Board> findMemberBoards(Long id);
 
 
 

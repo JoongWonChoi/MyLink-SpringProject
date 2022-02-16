@@ -15,6 +15,8 @@ public interface BoardService {
     //Delete
     void deletePost(Long index);
 
+    List<Board> viewOnesPosts(Long id);
+
 
 
 

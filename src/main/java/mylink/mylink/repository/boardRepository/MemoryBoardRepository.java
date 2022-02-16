@@ -55,6 +55,12 @@ public class MemoryBoardRepository implements BoardRepository {
         return null;
     }
 
+    @Override
+    public List<Board> findOnesPosts(Long id) {
+
+        return null;
+    }
+
 
     //매개변수로 전달된 id를 통해 Hashmap에 저장된 값을 꺼냄(board)
     @Override

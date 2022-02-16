@@ -3,6 +3,7 @@ package mylink.mylink.service.memberService;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import mylink.mylink.domain.Board;
 import mylink.mylink.domain.Member;
 import mylink.mylink.repository.memberRepository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,6 +72,11 @@ public class JPAMemberService implements MemberService {
     @Override
     public List<Member> findMembers() {
         return memberRepository.findAll();
+    }
+
+    @Override
+    public List<Board> viewMemberBoards(Long id) {
+        return memberRepository.findMemberBoards(id);
     }
 
     /*===로그인===*/

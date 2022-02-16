@@ -1,12 +1,12 @@
 package mylink.mylink.service.memberService;
 
+import mylink.mylink.domain.Board;
 import mylink.mylink.domain.Member;
 import mylink.mylink.repository.memberRepository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 //@Service
 @Transactional
 public class MemberServiceImpl implements MemberService{
@@ -72,6 +72,11 @@ public class MemberServiceImpl implements MemberService{
 
     @Override
     public List<Member> findMembers() {
+        return null;
+    }
+
+    @Override
+    public List<Board> viewMemberBoards(Long id) {
         return null;
     }
 }

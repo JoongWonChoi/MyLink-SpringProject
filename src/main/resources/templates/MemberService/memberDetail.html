@@ -29,6 +29,10 @@
                 <td th:text="${member.address}"></td>
                 <td th:text="${member.password}"></td>
                 <td>
+                    <a href="#" th:href="@{/members/{id}/boards (id=${member.id})}"
+                       class="btn btn-primary" role="button">작성글</a>
+                </td>
+                <td>
                     <a href="#" th:href="@{/members/{id}/edit (id=${member.id})}"
                        class="btn btn-primary" role="button">수정</a>
                 </td>
@@ -36,6 +40,7 @@
                     <a href="#" th:href="@{/members/{id}/delete (id=${member.id})}"
                        class="btn btn-primary" role="button" onclick="alert('complete!')">삭제</a>
                 </td>
+
             </tr>
             </tbody>
         </table>

@@ -44,4 +44,9 @@ public class JPABoardService implements BoardService{
     public void deletePost(Long index) {
         boardRepository.delete(index);
     }
+
+    @Override
+    public List<Board> viewOnesPosts(Long id) {
+        return boardRepository.findOnesPosts(id);
+    }
 }
