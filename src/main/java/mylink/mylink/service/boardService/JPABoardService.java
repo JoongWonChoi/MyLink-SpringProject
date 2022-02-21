@@ -14,7 +14,7 @@ import java.util.List;
 @Transactional(readOnly = true)
 public class JPABoardService implements BoardService{
 
-    @Autowired  private final BoardRepository boardRepository;
+    @Autowired private final BoardRepository boardRepository;
 
     @Override
     @Transactional

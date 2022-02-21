@@ -27,9 +27,9 @@
         <div th:each="post : ${post}" align="center" class="view_btn">
             <a href="#" th:href="@{/board-link}"
                class="btn btn-primary" role="button">목록으로</a>
-            <a href="#" th:if="${session.loginMember==post.member}" th:href="@{/board-link/{id}/edit (id=${post.id})}"
+            <a href="#" th:if="${session.loginMember!=null and session.loginMember.address==post.member.address}" th:href="@{/board-link/{id}/edit (id=${post.id})}"
                class="btn btn-primary" role="button">수정</a>
-            <a href="#" th:if="${session.loginMember==post.member}" th:href="@{/board-link/{id}/delete (id=${post.id})}"
+            <a href="#" th:if="${session.loginMember!=null and session.loginMember.address==post.member.address}" th:href="@{/board-link/{id}/delete (id=${post.id})}"
                class="btn btn-primary" role="button" onclick="alert('삭제 완료')">삭제</a>
         </div>
 </body>
