@@ -97,8 +97,9 @@ or board.member.name 의 접근 방식 잘못임
 연관관계 메서드로 해결...!? how?
 +내가 작성한 글은 나만 지울 수 있게끔 구현
 게시글의 회원정보 == 현재 내가 로그인한 회원 정보 판별
+
 session.loginMember과 post.member 비교 ==> 의도대로 기능 x
-
-
+==>thymeleaf if문법 내에 비교연산자(and) 사용해서 해결!
+그러면 session에 담긴 로그인 멤버 정보와 게시물을 작성한 멤버 정보는 다른것일까?
 
 

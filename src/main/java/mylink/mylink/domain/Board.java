@@ -30,7 +30,9 @@ public class Board {
     /*연관관계 매핑*/
     public void addBoardInMember(Member member) { //연관관계 메서드
         this.member = member;
-        member.getBoards().add(this);
+        member.getBoards().add(this); //객체지향적으로 사용되는 this ==> 자기 자신 메모리를 반환하는 역할. 즉 현재의 Board 메모리를 반환해줌
+        /*어떠한 원리로 연관관계 메서드가 호출되고 작동하는걸까?*/
+
     }
     /*비즈니스 로직*/
     //===게시물 생성===
